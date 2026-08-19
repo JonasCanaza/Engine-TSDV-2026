@@ -1,37 +1,14 @@
-#include "glfw3.h"
+#include "base_game.h"
+
+static const int windowWidth = 1920;
+static const int windowHeight = 1080;
+static const char* windowTitle = "Hello world";
 
 int main()
 {
-    GLFWwindow* window;
+	BaseGame::BaseGame baseGame;
 
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
+	baseGame.Play(windowWidth, windowHeight, windowTitle);
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
-    }
-
-    glfwTerminate();
-    return 0;
+	return 0;
 }

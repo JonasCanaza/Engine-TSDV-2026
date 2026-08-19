@@ -9,5 +9,25 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base_game.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\exceptions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base_game.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\exceptions.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
