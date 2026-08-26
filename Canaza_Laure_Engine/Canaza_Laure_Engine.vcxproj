@@ -22,13 +22,21 @@
     <ClCompile Include="src\exceptions.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Modules\base_game.cpp" />
+    <ClCompile Include="src\Modules\entity.cpp" />
+    <ClCompile Include="src\Modules\entity_2d.cpp" />
     <ClCompile Include="src\Modules\renderer.cpp" />
+    <ClCompile Include="src\Modules\shape.cpp" />
+    <ClCompile Include="src\Modules\Shapes\shapes.cpp" />
     <ClCompile Include="src\Modules\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\exceptions.h" />
     <ClInclude Include="src\Modules\base_game.h" />
+    <ClInclude Include="src\Modules\entity.h" />
+    <ClInclude Include="src\Modules\entity_2d.h" />
     <ClInclude Include="src\Modules\renderer.h" />
+    <ClInclude Include="src\Modules\shape.h" />
+    <ClInclude Include="src\Modules\Shapes\shapes.h" />
     <ClInclude Include="src\Modules\window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

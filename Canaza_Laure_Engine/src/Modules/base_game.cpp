@@ -17,13 +17,15 @@ namespace BaseGame
 		{
 			renderer->ClearScreen();
 
-			/* Render here */
-			renderer->Render();
-
-			window->Update();
+			for (int i = 0; i < entities.size(); i++)
+			{
+				entities[i]->Update();
+			}
 
 			/* Poll for and process events */
 			glfwPollEvents();
+
+			window->Update();
 		}
 
 		glfwTerminate();
@@ -36,13 +38,22 @@ namespace BaseGame
 			/* Initialize the library */
 			if (!glfwInit())
 			{
-				throw new Exceptions::OpenWindowFailed("Failed to open window.");
+				throw Exceptions::OpenWindowFailed("Failed to open window.");
 			}
 
 			window = new Window::Window(windowWidth, windowHeight, title);
 			renderer = new Renderer::Renderer();
 			window->OpenWindow();
 			renderer->Init();
+
+			float triangleVert[9] =
+			{
+	-0.5f, -0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.0f,  0.5f, 0.0f
+			};
+
+			entities.push_back(new Shapes::Triangle(triangleVert, renderer));
 		}
 		catch (OpenWindowFailed exception)
 		{
@@ -66,5 +77,10 @@ namespace BaseGame
 	{
 		delete window;
 		delete renderer;
+
+		for (int i = 0; i < entities.size(); i++)
+		{
+			delete entities[i];
+		}
 	}
 }

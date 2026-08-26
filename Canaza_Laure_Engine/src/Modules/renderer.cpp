@@ -9,14 +9,7 @@
 
 namespace Renderer
 {
-
-
 	Renderer::Renderer()
-	{
-
-	}
-
-	Renderer::~Renderer()
 	{
 
 	}
@@ -58,13 +51,10 @@ namespace Renderer
 	{
 		glDrawArrays(GL_TRIANGLES, first, count);
 	}
-<<<<<<< Updated upstream
-=======
 
 	Renderer::~Renderer()
 	{
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteBuffers(1, &VBO);
 	}
->>>>>>> Stashed changes
 }

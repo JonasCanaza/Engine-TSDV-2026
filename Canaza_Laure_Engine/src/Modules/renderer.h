@@ -24,11 +24,12 @@ namespace Renderer
 
 	public:
 		Renderer();
-		~Renderer();
 
 		void Init();
 		void ClearScreen();
 		void Draw(int first, int count);
+
+		~Renderer();
 	};
 }
 
