@@ -12,6 +12,9 @@ namespace Renderer
 	class Renderer
 	{
 	private:
+		unsigned int VAO = 0;
+		unsigned int VBO = 0;
+
 		float vertices[maxVertices] =
 		{
 -0.5f, -0.5f, 0.0f,
