@@ -4,6 +4,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{d36eefab-2e4e-4faa-8d88-05c3157dddf3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Modules">
+      <UniqueIdentifier>{2ebf5c4a-d1b1-4aa8-8bd2-194b9e075a41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -12,16 +15,28 @@
     <ClCompile Include="src\exceptions.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\base_game.cpp" />
-    <ClCompile Include="src\Modules\renderer.cpp" />
-    <ClCompile Include="src\Modules\window.cpp" />
+    <ClCompile Include="src\Modules\base_game.cpp">
+      <Filter>src\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\renderer.cpp">
+      <Filter>src\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\window.cpp">
+      <Filter>src\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\exceptions.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\base_game.h" />
-    <ClInclude Include="src\Modules\renderer.h" />
-    <ClInclude Include="src\Modules\window.h" />
+    <ClInclude Include="src\Modules\base_game.h">
+      <Filter>src\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\renderer.h">
+      <Filter>src\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\window.h">
+      <Filter>src\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

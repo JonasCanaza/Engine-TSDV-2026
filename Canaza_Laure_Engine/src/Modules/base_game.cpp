@@ -15,6 +15,8 @@ namespace BaseGame
 		/* Loop until the user closes the window */
 		while (!window->GetWindowShouldClose())
 		{
+			renderer->ClearScreen();
+
 			/* Render here */
 			renderer->Render();
 
