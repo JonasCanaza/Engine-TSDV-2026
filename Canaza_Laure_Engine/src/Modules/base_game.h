@@ -1,8 +1,7 @@
 #pragma once
 
-#include "glfw3.h"
-
-#include "window.h"
+#include "Modules/window.h"
+#include "Modules/renderer.h"
 
 namespace BaseGame
 {
@@ -12,6 +11,7 @@ namespace BaseGame
 		bool isRunning = true;
 
 		Window::Window* window = nullptr;
+		Renderer::Renderer* renderer = nullptr;		
 
 		void Loop();
 		void Init(int windowWidth, int windowHeight, const char* title);

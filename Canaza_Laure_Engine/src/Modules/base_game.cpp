@@ -1,4 +1,4 @@
-#include "base_game.h"
+#include "Modules/base_game.h"
 
 #include <stdexcept>
 #include <iostream>
@@ -16,7 +16,7 @@ namespace BaseGame
 		while (!window->GetWindowShouldClose())
 		{
 			/* Render here */
-			glClear(GL_COLOR_BUFFER_BIT);
+			renderer->Render();
 
 			window->Update();
 
@@ -38,6 +38,7 @@ namespace BaseGame
 			}
 
 			window = new Window::Window(windowWidth, windowHeight, title);
+			renderer = new Renderer::Renderer();
 			window->OpenWindow();
 		}
 		catch (OpenWindowFailed exception)
@@ -60,6 +61,7 @@ namespace BaseGame
 
 	BaseGame::~BaseGame()
 	{
-
+		delete window;
+		delete renderer;
 	}
 }

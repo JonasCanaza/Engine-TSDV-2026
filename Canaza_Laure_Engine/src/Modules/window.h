@@ -1,6 +1,7 @@
 #pragma once
 
-#include <glfw3.h>
+#define GLFW_INCLUDE_NONE
+#include "glfw3.h"
 
 namespace Window
 {

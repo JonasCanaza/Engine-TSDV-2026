@@ -19,15 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\base_game.cpp" />
     <ClCompile Include="src\exceptions.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\window.cpp" />
+    <ClCompile Include="src\Modules\base_game.cpp" />
+    <ClCompile Include="src\Modules\renderer.cpp" />
+    <ClCompile Include="src\Modules\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\base_game.h" />
     <ClInclude Include="src\exceptions.h" />
-    <ClInclude Include="src\window.h" />
+    <ClInclude Include="src\Modules\base_game.h" />
+    <ClInclude Include="src\Modules\renderer.h" />
+    <ClInclude Include="src\Modules\window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -137,15 +139,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>"$(ProjectDir)src";"$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\include\GLFW"</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\include\GLFW; $(ProjectDir)lib\glew-2.3.1\include\GL</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>"$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreLinkEvent>
+      <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Debug" /s /e /y </Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -155,15 +160,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>"$(ProjectDir)src";"$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\include\GLFW"</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\include\GLFW; $(ProjectDir)lib\glew-2.3.1\include\GL</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>"$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreLinkEvent>
+      <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Release" /s /e /y </Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
