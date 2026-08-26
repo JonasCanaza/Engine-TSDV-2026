@@ -12,6 +12,7 @@ namespace Renderer
 		Renderer();
 		~Renderer();
 
+		void Init();
 		void Render();
 		void Draw();
 	};

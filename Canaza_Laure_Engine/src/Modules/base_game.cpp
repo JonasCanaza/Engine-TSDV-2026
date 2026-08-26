@@ -40,6 +40,7 @@ namespace BaseGame
 			window = new Window::Window(windowWidth, windowHeight, title);
 			renderer = new Renderer::Renderer();
 			window->OpenWindow();
+			renderer->Init();
 		}
 		catch (OpenWindowFailed exception)
 		{
@@ -55,7 +56,7 @@ namespace BaseGame
 
 	void BaseGame::Play(int windowWidth, int windowHeight, const char* windowTitle)
 	{
-		Init(windowWidth,windowHeight,windowTitle);
+		Init(windowWidth, windowHeight, windowTitle);
 		Loop();
 	}
 

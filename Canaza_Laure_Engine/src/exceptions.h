@@ -25,4 +25,13 @@ namespace Exceptions
 		OpenWindowFailed(std::string message);
 		~OpenWindowFailed();
 	};
+
+	class InitGlewFailed : public Exception
+	{
+	private:
+
+	public:
+		InitGlewFailed(std::string message);
+		~InitGlewFailed();
+	};
 }

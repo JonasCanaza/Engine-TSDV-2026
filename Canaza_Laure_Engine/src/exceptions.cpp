@@ -26,4 +26,14 @@ namespace Exceptions
 	{
 
 	}
+
+	InitGlewFailed::InitGlewFailed(std::string message) : Exception(message)
+	{
+
+	}
+
+	InitGlewFailed::~InitGlewFailed()
+	{
+
+	}
 }
