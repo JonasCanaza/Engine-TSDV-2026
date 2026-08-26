@@ -7,6 +7,9 @@
     <Filter Include="src\Modules">
       <UniqueIdentifier>{2ebf5c4a-d1b1-4aa8-8bd2-194b9e075a41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Modules\Shapes">
+      <UniqueIdentifier>{4684f946-cf67-4b25-9298-b4a5d4e92e83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -24,6 +27,18 @@
     <ClCompile Include="src\Modules\window.cpp">
       <Filter>src\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="src\Modules\entity.cpp">
+      <Filter>src\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\entity_2d.cpp">
+      <Filter>src\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\shape.cpp">
+      <Filter>src\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\Shapes\shapes.cpp">
+      <Filter>src\Modules\Shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\exceptions.h">
@@ -37,6 +52,18 @@
     </ClInclude>
     <ClInclude Include="src\Modules\window.h">
       <Filter>src\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\entity.h">
+      <Filter>src\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\entity_2d.h">
+      <Filter>src\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\shape.h">
+      <Filter>src\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Shapes\shapes.h">
+      <Filter>src\Modules\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

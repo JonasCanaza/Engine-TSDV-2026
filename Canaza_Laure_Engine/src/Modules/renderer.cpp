@@ -9,14 +9,7 @@
 
 namespace Renderer
 {
-
-
 	Renderer::Renderer()
-	{
-
-	}
-
-	Renderer::~Renderer()
 	{
 
 	}
@@ -49,5 +42,10 @@ namespace Renderer
 	void Renderer::Draw(int first, int count)
 	{
 		glDrawArrays(GL_TRIANGLES, first, count);
+	}
+
+	Renderer::~Renderer()
+	{
+
 	}
 }
