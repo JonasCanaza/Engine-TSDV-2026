@@ -4,9 +4,9 @@ namespace Shapes
 {
 	const std::vector<float> Triangle::vertices =
 	{
--0.5f, -0.f, 0.5f,
- 0.5f, -0.5f, 0.0f,
- 0.0f,  0.5f, 0.0f
+-0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f, 1.0f,
+ 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f, 1.0f,
+ 0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f, 1.0f
 	};
 
 	const std::vector<unsigned int> Triangle::indexes =
@@ -14,9 +14,9 @@ namespace Shapes
 		0,1,2
 	};
 
-	Triangle::Triangle(Renderer::Renderer* renderer) : Shape(renderer,vertices,indexes)
+	Triangle::Triangle(Renderer::Renderer* renderer) : Shape(renderer, vertices, indexes)
 	{
-		
+
 	}
 
 	Triangle::Triangle(Renderer::Renderer* renderer, Material::Material* material) : Shape(renderer, vertices, indexes, material)

@@ -39,10 +39,10 @@ namespace Renderer
 		glBindVertexArray(VAO);
 
 		glDrawElements(
-			GL_TRIANGLES,       
-			(int)indexCount,         
-			GL_UNSIGNED_INT,    
-			(void*)0            
+			GL_TRIANGLES,
+			(int)indexCount,
+			GL_UNSIGNED_INT,
+			(void*)0
 		);
 
 		glBindVertexArray(0);
@@ -67,7 +67,10 @@ namespace Renderer
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indexCount * sizeof(float), indexes.data(), GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)0);
+
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(3 * sizeof(float)));
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -159,6 +162,6 @@ namespace Renderer
 
 	Renderer::~Renderer()
 	{
-	
+
 	}
 }
