@@ -3,9 +3,9 @@
 #include <iostream>
 #include <vector>
 
-#include "Modules/window.h"
-#include "Modules/renderer.h"
-#include "Shapes/shapes.h"
+#include "Modules/Window/window.h"
+#include "Modules/Renderer/renderer.h"
+#include "Modules/Shape/shapes.h"
 
 namespace BaseGame
 {

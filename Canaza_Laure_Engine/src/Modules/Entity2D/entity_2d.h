@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Modules/entity.h"
+#include "Modules/Entity/entity.h"
+#include "Modules/Material/material.h"
 
 namespace Entity2D
 {
@@ -8,10 +9,12 @@ namespace Entity2D
 
 	class Entity2D : public Entity
 	{
-	private:
+	protected:
+		Material::Material* material = nullptr;
 
 	public:
 		Entity2D(Renderer::Renderer* renderer);
+		Entity2D(Renderer::Renderer* renderer, Material::Material* material);
 
 		virtual void Draw() = 0;
 

@@ -1,10 +1,7 @@
-#include "Modules/renderer.h"
+#include "Modules/Renderer/renderer.h"
 
 #include <iostream>
 #include <string>
-
-#include "glew.h"
-#include "glfw3.h"
 
 #include "Exceptions/exceptions.h"
 
@@ -55,11 +52,11 @@ namespace Renderer
 		glDrawArrays(GL_TRIANGLES, first, count);
 	}
 
-	unsigned int Renderer::CreateShader(const char* shaderSource)
+	unsigned int Renderer::CreateShader(const char* shaderSource, GLenum shaderType)
 	{
 		try
 		{
-			unsigned int shader = glCreateShader(GL_FRAGMENT_SHADER);
+			unsigned int shader = glCreateShader(shaderType);
 
 			glShaderSource(shader, maxShaderSourceStringsAmount, &shaderSource, NULL);
 			glCompileShader(shader);
@@ -100,7 +97,7 @@ namespace Renderer
 
 			glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 
-			if (!success) 
+			if (!success)
 			{
 				glGetProgramInfoLog(shaderProgram, maxShaderCreateInfoLog, NULL, infoLog);
 				throw Exceptions::CreateShaderProgramFailed("Failed to create shader program: Error log: " + std::string(infoLog));
@@ -121,7 +118,7 @@ namespace Renderer
 
 	unsigned int Renderer::CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource)
 	{
-		return CreateShaderProgram(CreateShader(vertexShaderSource), CreateShader(fragmentShaderSource));
+		return CreateShaderProgram(CreateShader(vertexShaderSource, GL_VERTEX_SHADER), CreateShader(fragmentShaderSource, GL_FRAGMENT_SHADER));
 	}
 
 	void Renderer::DestroyShader(unsigned int shaderProgram)

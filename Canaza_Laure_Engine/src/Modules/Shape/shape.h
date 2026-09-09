@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 
-#include "Modules/entity_2d.h"
+#include "Modules/Entity2D/entity_2d.h"
 
 namespace Shape
 {
@@ -18,6 +18,8 @@ namespace Shape
 
 	public:
 		Shape(Renderer::Renderer* renderer);
+		Shape(Renderer::Renderer* renderer, Material::Material* material);
+
 		virtual ~Shape();
 	};
 }
