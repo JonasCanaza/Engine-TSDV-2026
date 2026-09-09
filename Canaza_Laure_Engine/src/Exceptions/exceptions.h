@@ -43,4 +43,13 @@ namespace Exceptions
 		CreateShaderFailed(std::string message);
 		~CreateShaderFailed();
 	};
+
+	class CreateShaderProgramFailed : public Exception
+	{
+	private:
+
+	public:
+		CreateShaderProgramFailed(std::string message);
+		~CreateShaderProgramFailed();
+	};
 }

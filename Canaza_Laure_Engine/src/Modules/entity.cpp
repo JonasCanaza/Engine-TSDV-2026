@@ -9,11 +9,11 @@ namespace Entity
 
 	void Entity::Update()
 	{
-		Draw();
+
 	}
 
 	Entity::~Entity()
 	{
-
+		renderer->DestroyShader(shaderProgram);
 	}
 }

@@ -10,12 +10,15 @@
     <Filter Include="src\Modules\Shapes">
       <UniqueIdentifier>{4684f946-cf67-4b25-9298-b4a5d4e92e83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Exceptions">
+      <UniqueIdentifier>{98c83c49-8a58-47ea-865c-6ecdf66b518f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ShaderProgram">
+      <UniqueIdentifier>{840bd43e-8adf-4dcd-9208-67aef3361eb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\exceptions.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Modules\base_game.cpp">
@@ -39,11 +42,14 @@
     <ClCompile Include="src\Modules\Shapes\shapes.cpp">
       <Filter>src\Modules\Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Exceptions\exceptions.cpp">
+      <Filter>src\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShaderProgram\shader_program.cpp">
+      <Filter>src\ShaderProgram</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\exceptions.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\Modules\base_game.h">
       <Filter>src\Modules</Filter>
     </ClInclude>
@@ -64,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="src\Modules\Shapes\shapes.h">
       <Filter>src\Modules\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\exceptions.h">
+      <Filter>src\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShaderProgram\shader_program.h">
+      <Filter>src\ShaderProgram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

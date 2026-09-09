@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\exceptions.cpp" />
+    <ClCompile Include="src\Exceptions\exceptions.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Modules\base_game.cpp" />
     <ClCompile Include="src\Modules\entity.cpp" />
@@ -28,9 +28,10 @@
     <ClCompile Include="src\Modules\shape.cpp" />
     <ClCompile Include="src\Modules\Shapes\shapes.cpp" />
     <ClCompile Include="src\Modules\window.cpp" />
+    <ClCompile Include="src\ShaderProgram\shader_program.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\exceptions.h" />
+    <ClInclude Include="src\Exceptions\exceptions.h" />
     <ClInclude Include="src\Modules\base_game.h" />
     <ClInclude Include="src\Modules\entity.h" />
     <ClInclude Include="src\Modules\entity_2d.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="src\Modules\shape.h" />
     <ClInclude Include="src\Modules\Shapes\shapes.h" />
     <ClInclude Include="src\Modules\window.h" />
+    <ClInclude Include="src\ShaderProgram\shader_program.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

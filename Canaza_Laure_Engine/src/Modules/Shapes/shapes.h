@@ -13,6 +13,7 @@ namespace Shapes
 	public:
 		Triangle(float vertices[], Renderer::Renderer* renderer);
 
+		void Update() override;
 		void Draw() override;
 
 		~Triangle();

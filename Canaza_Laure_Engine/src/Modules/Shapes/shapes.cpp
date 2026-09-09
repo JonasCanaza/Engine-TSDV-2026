@@ -10,9 +10,14 @@ namespace Shapes
 		}
 	}
 
+	void Triangle::Update()
+	{
+		Draw();
+	}
+
 	void Triangle::Draw()
 	{
-		renderer->Draw(0, 3);
+		renderer->Draw(0, 0, 3);
 	}
 
 	Triangle::~Triangle()

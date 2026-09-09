@@ -13,6 +13,8 @@ namespace Entity2D
 	public:
 		Entity2D(Renderer::Renderer* renderer);
 
+		virtual void Draw() = 0;
+
 		virtual ~Entity2D();
 	};
 }

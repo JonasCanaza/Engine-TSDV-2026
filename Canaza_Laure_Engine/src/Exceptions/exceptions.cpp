@@ -25,4 +25,7 @@ namespace Exceptions
 
 	CreateShaderFailed::CreateShaderFailed(std::string message) : Exception(message) {}
 	CreateShaderFailed::~CreateShaderFailed() {}
+
+	CreateShaderProgramFailed::CreateShaderProgramFailed(std::string message) : Exception(message) {}
+	CreateShaderProgramFailed::~CreateShaderProgramFailed() {}
 }
