@@ -7,63 +7,99 @@
     <Filter Include="src\Modules">
       <UniqueIdentifier>{2ebf5c4a-d1b1-4aa8-8bd2-194b9e075a41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Modules\Shapes">
-      <UniqueIdentifier>{4684f946-cf67-4b25-9298-b4a5d4e92e83}</UniqueIdentifier>
+    <Filter Include="src\Exceptions">
+      <UniqueIdentifier>{98c83c49-8a58-47ea-865c-6ecdf66b518f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ShaderProgram">
+      <UniqueIdentifier>{840bd43e-8adf-4dcd-9208-67aef3361eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\BaseGame">
+      <UniqueIdentifier>{5b286c68-fe77-4f50-bd74-6f213c216fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\Entity">
+      <UniqueIdentifier>{3930a1f9-4c95-49a9-ace1-ba3cfa6385b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\Entity2D">
+      <UniqueIdentifier>{c9fed2cc-7621-4621-b953-40fdbc842ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\Renderer">
+      <UniqueIdentifier>{2037d4ca-e823-49c3-8b9b-221372cf36ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\Shape">
+      <UniqueIdentifier>{1fdda283-9a03-4bd8-8972-1c3c386eabcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\Window">
+      <UniqueIdentifier>{a25789a6-b9d2-4cfb-8dd9-aa12b27f82bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\Material">
+      <UniqueIdentifier>{1d195211-ecfc-4647-b9e2-163d3470aefa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\exceptions.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Exceptions\exceptions.cpp">
+      <Filter>src\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\base_game.cpp">
-      <Filter>src\Modules</Filter>
+    <ClCompile Include="src\ShaderProgram\shader_program.cpp">
+      <Filter>src\ShaderProgram</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\renderer.cpp">
-      <Filter>src\Modules</Filter>
+    <ClCompile Include="src\Modules\BaseGame\base_game.cpp">
+      <Filter>src\Modules\BaseGame</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\window.cpp">
-      <Filter>src\Modules</Filter>
+    <ClCompile Include="src\Modules\Entity\entity.cpp">
+      <Filter>src\Modules\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\entity.cpp">
-      <Filter>src\Modules</Filter>
+    <ClCompile Include="src\Modules\Entity2D\entity_2d.cpp">
+      <Filter>src\Modules\Entity2D</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\entity_2d.cpp">
-      <Filter>src\Modules</Filter>
+    <ClCompile Include="src\Modules\Window\window.cpp">
+      <Filter>src\Modules\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\shape.cpp">
-      <Filter>src\Modules</Filter>
+    <ClCompile Include="src\Modules\Shape\shape.cpp">
+      <Filter>src\Modules\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\Shapes\shapes.cpp">
-      <Filter>src\Modules\Shapes</Filter>
+    <ClCompile Include="src\Modules\Shape\shapes.cpp">
+      <Filter>src\Modules\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\Renderer\renderer.cpp">
+      <Filter>src\Modules\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\Material\material.cpp">
+      <Filter>src\Modules\Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\exceptions.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Exceptions\exceptions.h">
+      <Filter>src\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\base_game.h">
-      <Filter>src\Modules</Filter>
+    <ClInclude Include="src\ShaderProgram\shader_program.h">
+      <Filter>src\ShaderProgram</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\renderer.h">
-      <Filter>src\Modules</Filter>
+    <ClInclude Include="src\Modules\BaseGame\base_game.h">
+      <Filter>src\Modules\BaseGame</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\window.h">
-      <Filter>src\Modules</Filter>
+    <ClInclude Include="src\Modules\Entity\entity.h">
+      <Filter>src\Modules\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\entity.h">
-      <Filter>src\Modules</Filter>
+    <ClInclude Include="src\Modules\Entity2D\entity_2d.h">
+      <Filter>src\Modules\Entity2D</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\entity_2d.h">
-      <Filter>src\Modules</Filter>
+    <ClInclude Include="src\Modules\Window\window.h">
+      <Filter>src\Modules\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\shape.h">
-      <Filter>src\Modules</Filter>
+    <ClInclude Include="src\Modules\Shape\shape.h">
+      <Filter>src\Modules\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\Shapes\shapes.h">
-      <Filter>src\Modules\Shapes</Filter>
+    <ClInclude Include="src\Modules\Shape\shapes.h">
+      <Filter>src\Modules\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Renderer\renderer.h">
+      <Filter>src\Modules\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Material\material.h">
+      <Filter>src\Modules\Material</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

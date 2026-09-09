@@ -34,4 +34,22 @@ namespace Exceptions
 		InitGlewFailed(std::string message);
 		~InitGlewFailed();
 	};
+
+	class CreateShaderFailed : public Exception
+	{
+	private:
+
+	public:
+		CreateShaderFailed(std::string message);
+		~CreateShaderFailed();
+	};
+
+	class CreateShaderProgramFailed : public Exception
+	{
+	private:
+
+	public:
+		CreateShaderProgramFailed(std::string message);
+		~CreateShaderProgramFailed();
+	};
 }

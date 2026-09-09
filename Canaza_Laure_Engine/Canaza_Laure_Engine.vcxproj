@@ -19,25 +19,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\exceptions.cpp" />
+    <ClCompile Include="src\Exceptions\exceptions.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Modules\base_game.cpp" />
-    <ClCompile Include="src\Modules\entity.cpp" />
-    <ClCompile Include="src\Modules\entity_2d.cpp" />
-    <ClCompile Include="src\Modules\renderer.cpp" />
-    <ClCompile Include="src\Modules\shape.cpp" />
-    <ClCompile Include="src\Modules\Shapes\shapes.cpp" />
-    <ClCompile Include="src\Modules\window.cpp" />
+    <ClCompile Include="src\Modules\BaseGame\base_game.cpp" />
+    <ClCompile Include="src\Modules\Entity2D\entity_2d.cpp" />
+    <ClCompile Include="src\Modules\Entity\entity.cpp" />
+    <ClCompile Include="src\Modules\Material\material.cpp" />
+    <ClCompile Include="src\Modules\Renderer\renderer.cpp" />
+    <ClCompile Include="src\Modules\Shape\shape.cpp" />
+    <ClCompile Include="src\Modules\Shape\shapes.cpp" />
+    <ClCompile Include="src\Modules\Window\window.cpp" />
+    <ClCompile Include="src\ShaderProgram\shader_program.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\exceptions.h" />
-    <ClInclude Include="src\Modules\base_game.h" />
-    <ClInclude Include="src\Modules\entity.h" />
-    <ClInclude Include="src\Modules\entity_2d.h" />
-    <ClInclude Include="src\Modules\renderer.h" />
-    <ClInclude Include="src\Modules\shape.h" />
-    <ClInclude Include="src\Modules\Shapes\shapes.h" />
-    <ClInclude Include="src\Modules\window.h" />
+    <ClInclude Include="src\Exceptions\exceptions.h" />
+    <ClInclude Include="src\Modules\BaseGame\base_game.h" />
+    <ClInclude Include="src\Modules\Entity2D\entity_2d.h" />
+    <ClInclude Include="src\Modules\Entity\entity.h" />
+    <ClInclude Include="src\Modules\Material\material.h" />
+    <ClInclude Include="src\Modules\Renderer\renderer.h" />
+    <ClInclude Include="src\Modules\Shape\shape.h" />
+    <ClInclude Include="src\Modules\Shape\shapes.h" />
+    <ClInclude Include="src\Modules\Window\window.h" />
+    <ClInclude Include="src\ShaderProgram\shader_program.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -48,26 +52,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -122,6 +126,12 @@
       <AdditionalLibraryDirectories>"$(ProjectDir)lib\glfw-3.5.1.bin.WIN32\lib-vc2026";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -140,6 +150,12 @@
       <AdditionalLibraryDirectories>"$(ProjectDir)lib\glfw-3.5.1.bin.WIN32\lib-vc2026";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -157,8 +173,15 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Debug" /s /e /y </Command>
+      <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Debug" /s /e /y 
+ </Command>
     </PreLinkEvent>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -180,6 +203,12 @@
     <PreLinkEvent>
       <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Release" /s /e /y </Command>
     </PreLinkEvent>
+    <Lib>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

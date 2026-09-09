@@ -1,6 +1,9 @@
-#include "Modules/window.h"
+#include "Modules/Window/window.h"
 
 #include <iostream>
+
+#define GLFW_INCLUDE_NONE
+#include "glfw3.h"
 
 namespace Window
 {

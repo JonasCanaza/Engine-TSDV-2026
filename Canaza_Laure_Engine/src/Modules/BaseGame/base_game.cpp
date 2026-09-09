@@ -1,9 +1,12 @@
-#include "Modules/base_game.h"
+#include "Modules/BaseGame/base_game.h"
 
 #include <stdexcept>
 #include <iostream>
 
-#include "exceptions.h"
+#define GLFW_INCLUDE_NONE
+#include "glfw3.h"
+
+#include "Exceptions/exceptions.h"
 
 using namespace std;
 using namespace Exceptions;
@@ -17,13 +20,10 @@ namespace BaseGame
 		{
 			renderer->ClearScreen();
 
-			for (int i = 0; i < entities.size(); i++)
-			{
-				entities[i]->Update();
-			}
-
 			/* Poll for and process events */
 			glfwPollEvents();
+
+			OnUpdate();
 
 			window->Update();
 		}
@@ -45,15 +45,6 @@ namespace BaseGame
 			renderer = new Renderer::Renderer();
 			window->OpenWindow();
 			renderer->Init();
-
-			float triangleVert[9] =
-			{
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-			};
-
-			entities.push_back(new Shapes::Triangle(triangleVert, renderer));
 		}
 		catch (OpenWindowFailed exception)
 		{
@@ -70,7 +61,23 @@ namespace BaseGame
 	void BaseGame::Play(int windowWidth, int windowHeight, const char* windowTitle)
 	{
 		Init(windowWidth, windowHeight, windowTitle);
+		OnInit();
 		Loop();
+	}
+
+	void BaseGame::OnInit()
+	{
+
+	}
+
+	void BaseGame::OnUpdate()
+	{
+
+	}
+
+	void BaseGame::OnDeinit()
+	{
+
 	}
 
 	BaseGame::~BaseGame()
@@ -78,9 +85,6 @@ namespace BaseGame
 		delete window;
 		delete renderer;
 
-		for (int i = 0; i < entities.size(); i++)
-		{
-			delete entities[i];
-		}
+		OnDeinit();
 	}
 }
