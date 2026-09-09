@@ -2,20 +2,26 @@
 
 namespace Shapes
 {
-	Triangle::Triangle(float vertices[], Renderer::Renderer* renderer) : Shape(renderer)
+	const std::vector<float> Triangle::vertices =
 	{
-		for (int i = 0; i < maxVertices; i++)
-		{
-			this->vertices.push_back(vertices[i]);
-		}
+-0.5f, -0.f, 0.5f,
+ 0.5f, -0.5f, 0.0f,
+ 0.0f,  0.5f, 0.0f
+	};
+
+	const std::vector<unsigned int> Triangle::indexes =
+	{
+		0,1,2
+	};
+
+	Triangle::Triangle(Renderer::Renderer* renderer) : Shape(renderer,vertices,indexes)
+	{
+		
 	}
 
-	Triangle::Triangle(float vertices[], Renderer::Renderer* renderer, Material::Material* material) : Shape(renderer, material)
+	Triangle::Triangle(Renderer::Renderer* renderer, Material::Material* material) : Shape(renderer, vertices, indexes, material)
 	{
-		for (int i = 0; i < maxVertices; i++)
-		{
-			this->vertices.push_back(vertices[i]);
-		}
+
 	}
 
 	void Triangle::Update()
@@ -25,7 +31,7 @@ namespace Shapes
 
 	void Triangle::Draw()
 	{
-		renderer->Draw(material->GetShader()->GetId(), 0, 3);
+		renderer->Draw(model.VAO, model.indexCount, material->GetShader()->GetId());
 	}
 
 	Triangle::~Triangle()

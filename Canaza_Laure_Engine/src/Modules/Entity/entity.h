@@ -7,19 +7,18 @@ namespace Entity
 	class Entity
 	{
 	protected:
-		unsigned int VBO = 0;
-		unsigned int VAO = 0;
-
-		unsigned int vertexShader = 0;
-		unsigned int fragmentShader = 0;
-		unsigned int shaderProgram = 0;
-
 		Renderer::Renderer* renderer = nullptr;
 
+		Renderer::Model model;
+
+		std::vector<float> vertices;
+		std::vector<unsigned int> indexes;
+
 	public:
-		Entity(Renderer::Renderer* renderer);
+		Entity(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
 
 		virtual void Update();
+		virtual void Draw() = 0;
 
 		virtual ~Entity();
 	};

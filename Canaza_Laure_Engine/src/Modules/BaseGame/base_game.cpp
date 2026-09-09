@@ -46,14 +46,7 @@ namespace BaseGame
 			window->OpenWindow();
 			renderer->Init();
 
-			float triangleVert[9] =
-			{
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-			};
-
-			entities.push_back(new Shapes::Triangle(triangleVert, renderer));
+			entities.push_back(new Shapes::Triangle(renderer));
 		}
 		catch (OpenWindowFailed exception)
 		{

@@ -17,9 +17,9 @@ namespace Shape
 		std::vector<float> vertices;
 
 	public:
-		Shape(Renderer::Renderer* renderer);
-		Shape(Renderer::Renderer* renderer, Material::Material* material);
-
+		Shape(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
+		Shape(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes, Material::Material* material);
+																				 
 		virtual ~Shape();
 	};
 }

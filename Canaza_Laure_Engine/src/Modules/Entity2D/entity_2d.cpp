@@ -2,12 +2,14 @@
 
 namespace Entity2D
 {
-	Entity2D::Entity2D(Renderer::Renderer* renderer) : Entity(renderer)
+	Entity2D::Entity2D(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes) : Entity(renderer,vertices,indexes)
 	{
 		this->material = new Material::Material(renderer);
+		this->vertices = vertices;
+		this->indexes = indexes;
 	}
 
-	Entity2D::Entity2D(Renderer::Renderer* renderer, Material::Material* material) : Entity(renderer)
+	Entity2D::Entity2D(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes, Material::Material* material) : Entity(renderer,vertices,indexes)
 	{
 		this->material = material;
 	}
@@ -15,5 +17,6 @@ namespace Entity2D
 	Entity2D::~Entity2D()
 	{
 		delete this->material;
+		renderer->DestroyModel(model);
 	}
 }

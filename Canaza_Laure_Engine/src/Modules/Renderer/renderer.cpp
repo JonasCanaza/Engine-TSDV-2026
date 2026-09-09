@@ -20,19 +20,6 @@ namespace Renderer
 			{
 				throw Exceptions::InitGlewFailed("Failed to init glew");
 			}
-
-			glGenVertexArrays(1, &VAO);
-			glBindVertexArray(VAO);
-
-			glGenBuffers(1, &VBO);
-			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
 		catch (Exceptions::InitGlewFailed except)
 		{
@@ -45,11 +32,47 @@ namespace Renderer
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::Draw(unsigned int shaderProgram, int first, int count)
+	void Renderer::Draw(unsigned int VAO, size_t indexCount, unsigned int shaderProgram)
 	{
 		glUseProgram(shaderProgram);
 
-		glDrawArrays(GL_TRIANGLES, first, count);
+		glBindVertexArray(VAO);
+
+		glDrawElements(
+			GL_TRIANGLES,       
+			(int)indexCount,         
+			GL_UNSIGNED_INT,    
+			(void*)0            
+		);
+
+		glBindVertexArray(0);
+	}
+
+	Model Renderer::CreateModel(const std::vector<float>& vertices, const std::vector<unsigned int>& indexes)
+	{
+		Model model;
+
+		model.verticesCount = vertices.size();
+		model.indexCount = indexes.size();
+
+		glGenVertexArrays(1, &model.VAO);
+		glBindVertexArray(model.VAO);
+
+		glGenBuffers(1, &model.VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, model.VBO);
+		glBufferData(GL_ARRAY_BUFFER, model.verticesCount * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+
+		glGenBuffers(1, &model.EBO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indexCount * sizeof(float), indexes.data(), GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		return model;
 	}
 
 	unsigned int Renderer::CreateShader(const char* shaderSource, GLenum shaderType)
@@ -126,9 +149,16 @@ namespace Renderer
 		glDeleteProgram(shaderProgram);
 	}
 
+	void Renderer::DestroyModel(Model& model)
+	{
+		glDeleteVertexArrays(1, &model.VAO);
+		glDeleteBuffers(1, &model.VBO);
+		glDeleteBuffers(1, &model.EBO);
+	}
+
+
 	Renderer::~Renderer()
 	{
-		glDeleteVertexArrays(1, &VAO);
-		glDeleteBuffers(1, &VBO);
+	
 	}
 }
