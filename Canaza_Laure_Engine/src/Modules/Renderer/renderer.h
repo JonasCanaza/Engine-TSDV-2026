@@ -5,8 +5,7 @@
 
 #include "Modules/Window/window.h"
 
-#include "glfw3.h"
-#include "glew.h"
+typedef unsigned int GLenum;
 
 namespace Renderer
 {

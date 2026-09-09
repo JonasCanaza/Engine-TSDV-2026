@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#define GLFW_INCLUDE_NONE
+#include "glfw3.h"
+
 namespace Window
 {
 	Window::Window(int width, int height, const char* title)

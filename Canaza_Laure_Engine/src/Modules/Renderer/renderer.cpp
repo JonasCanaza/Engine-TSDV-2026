@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 
+#include "glew.h"
+#include "glfw3.h"
+
 #include "Exceptions/exceptions.h"
 
 namespace Renderer
