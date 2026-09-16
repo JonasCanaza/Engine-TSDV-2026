@@ -34,11 +34,11 @@
     <Filter Include="src\Modules\Material">
       <UniqueIdentifier>{1d195211-ecfc-4647-b9e2-163d3470aefa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Defines">
+      <UniqueIdentifier>{d2524b55-22c6-4ca8-be0e-a898881c8a76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Exceptions\exceptions.cpp">
       <Filter>src\Exceptions</Filter>
     </ClCompile>
@@ -100,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="src\Modules\Material\material.h">
       <Filter>src\Modules\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defines\dll_define.h">
+      <Filter>src\Defines</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
