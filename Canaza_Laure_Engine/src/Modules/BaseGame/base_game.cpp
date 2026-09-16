@@ -50,6 +50,7 @@ namespace BaseGame
 		{
 			cout << exception.What();
 			isRunning = false;
+			throw Exceptions::EngineInitFailed("Failed to open window.");
 		}
 	}
 
