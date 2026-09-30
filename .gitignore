@@ -1,3 +1,8 @@
 .vs
 obj
 bin
+
+!*.dll
+!**/bin/**/*.dll
+!**/lib/**/*.dll
+!**/include/**/*.dll
