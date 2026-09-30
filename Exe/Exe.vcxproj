@@ -103,7 +103,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+      <Command>xcopy /Y /D /I "$(ProjectDir)include\Engine\lib\*.dll" "$(TargetDir)."</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,7 +121,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+      <Command>xcopy /Y /D /I "$(ProjectDir)include\Engine\lib\*.dll" "$(TargetDir)."</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,7 +143,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+      <Command>xcopy /Y /D /I "$(ProjectDir)include\Engine\lib\*.dll" "$(TargetDir)."</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -163,7 +163,7 @@
       <AdditionalDependencies>Canaza_Laure_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+      <Command>xcopy /Y /D /I "$(ProjectDir)include\Engine\lib\*.dll" "$(TargetDir)."</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

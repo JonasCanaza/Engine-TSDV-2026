@@ -214,7 +214,8 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Release" /s /e /y </Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Lib>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
