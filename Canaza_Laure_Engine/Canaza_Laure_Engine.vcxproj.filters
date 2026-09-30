@@ -60,14 +60,14 @@
     <ClCompile Include="src\Modules\Shape\shape.cpp">
       <Filter>src\Modules\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\Shape\shapes.cpp">
-      <Filter>src\Modules\Shape</Filter>
-    </ClCompile>
     <ClCompile Include="src\Modules\Renderer\renderer.cpp">
       <Filter>src\Modules\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Modules\Material\material.cpp">
       <Filter>src\Modules\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\Shape\shapes.cpp">
+      <Filter>src\Modules\Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,9 +92,6 @@
     <ClInclude Include="src\Modules\Shape\shape.h">
       <Filter>src\Modules\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\Shape\shapes.h">
-      <Filter>src\Modules\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="src\Modules\Renderer\renderer.h">
       <Filter>src\Modules\Renderer</Filter>
     </ClInclude>
@@ -103,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="src\Defines\dll_define.h">
       <Filter>src\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Shape\shapes.h">
+      <Filter>src\Modules\Shape</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

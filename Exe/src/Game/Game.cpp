@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Flipper.h"
+
 namespace Game
 {
 	Game::Game()
@@ -11,10 +13,15 @@ namespace Game
 
 	void Game::OnInit()
 	{
-		Shapes::Triangle* triangle1 = new Shapes::Triangle(glm::mat4(1.0f), renderer);
-		triangle1->Translation(300.0f, 300.0f, 0.0f);
-		triangle1->Scale(300.0f, 300.0f, 1.0f);
-		entities.push_back(triangle1);
+		star = new Star(glm::mat4(1.0f), renderer);
+		
+		glm::vec3 startPos = glm::vec3(1400.0f, 300.0f, 0.0f);
+		Flipper* flipper = new Flipper(glm::mat4(1.0f), startPos, renderer);
+		
+		flipper->Translation(1400.0f, 300.0f, 0.0f);
+		flipper->Scale(300.0f, 300.0f, 1.0f);
+
+		entities.push_back(flipper);
 	}
 
 	void Game::OnUpdate()
@@ -22,10 +29,9 @@ namespace Game
 		for (int i = 0; i < entities.size(); i++)
 		{
 			entities[i]->Update();
-			entities[i]->Rotate(1.0f);
-			//entities[i]->Translate(10.0f,0.0f,0.0f);
 		}
-		//std::cout << "lo logre";
+
+		star->Update();
 	}
 
 	void Game::OnDeinit()
@@ -34,6 +40,8 @@ namespace Game
 		{
 			delete entities[i];
 		}
+
+		delete star;
 	}
 
 	Game::~Game()

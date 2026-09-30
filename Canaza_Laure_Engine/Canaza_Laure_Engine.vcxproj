@@ -132,6 +132,9 @@
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(OutDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -156,6 +159,9 @@
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(OutDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -173,8 +179,8 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>xcopy "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(ProjectDir)bin\x64\Debug" /s /e /y 
- </Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Lib>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -182,6 +188,13 @@
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(OutDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -209,6 +222,9 @@
     <Lib>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw-3.5.1.bin.WIN64\lib-vc2026;$(ProjectDIr)lib\glew-2.3.1\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(ProjectDir)lib\glew-2.3.1\bin\x64\glew32.dll" "$(OutDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

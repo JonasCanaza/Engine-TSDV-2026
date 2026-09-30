@@ -15,10 +15,18 @@
     <ClCompile Include="src\Game\Game.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
+    <ClCompile Include="src\Flipper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game\Game.h">
       <Filter>src\Game</Filter>
     </ClInclude>
+    <ClInclude Include="src\Flipper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Star.h" />
   </ItemGroup>
 </Project>

@@ -6,14 +6,22 @@
 
 namespace Entity
 {
-	Entity::Entity(glm::mat4 globalTRS, Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes)
+	Entity::Entity(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes)
 	{
 		this->globalTRS = globalTRS;
 		this->renderer = renderer;
 		this->vertices = vertices;
 		this->indexes = indexes;
 
-		model = renderer->CreateModel(vertices, indexes);
+		for (int i = 0; i < vertices.size() / 7; i++)
+		{
+			this->vertices[7 * i + 3] = color.r;
+			this->vertices[7 * i + 4] = color.g;
+			this->vertices[7 * i + 5] = color.b;
+			this->vertices[7 * i + 6] = color.a;
+		}
+
+		model = renderer->CreateModel(this->vertices, indexes);
 	}
 
 	void Entity::Translate(float x, float y, float z)

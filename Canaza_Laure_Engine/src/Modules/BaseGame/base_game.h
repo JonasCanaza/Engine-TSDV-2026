@@ -8,7 +8,6 @@
 #include "Defines/dll_define.h"
 #include "Modules/Window/window.h"
 #include "Modules/Renderer/renderer.h"
-#include "Modules/Shape/shapes.h"
 
 namespace BaseGame
 {

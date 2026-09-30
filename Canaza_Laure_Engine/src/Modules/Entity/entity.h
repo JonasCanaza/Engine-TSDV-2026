@@ -2,9 +2,10 @@
 
 #include "Modules/Renderer/renderer.h"
 
+#include "Defines/dll_define.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include "Defines/dll_define.h"
+
 
 namespace Entity
 {
@@ -30,7 +31,7 @@ namespace Entity
 		std::vector<unsigned int> indexes;
 #pragma warning(pop)
 	public:
-		Entity(glm::mat4 globalTRS, Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
+		Entity(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
 
 		void Translate(float x, float y, float z);
 		void Rotate(float rotationZ);

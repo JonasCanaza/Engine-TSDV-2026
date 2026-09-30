@@ -19,11 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Flipper.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Flipper.h" />
     <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\Star.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Canaza_Laure_Engine\Canaza_Laure_Engine.vcxproj">
+      <Project>{b9c711d4-b8a9-469f-8ddc-1e8519e05830}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -93,6 +102,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -108,6 +120,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -123,6 +138,13 @@
       <AdditionalLibraryDirectories>$(ProjectDir)include\Engine\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Canaza_Laure_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -140,6 +162,9 @@
       <AdditionalLibraryDirectories>$(ProjectDir)include\Engine\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Canaza_Laure_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D /I "$(SolutionDir)Canaza_Laure_Engine\bin\$(Platform)\$(Configuration)\Canaza_Laure_Engine.dll" "$(TargetDir)."</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

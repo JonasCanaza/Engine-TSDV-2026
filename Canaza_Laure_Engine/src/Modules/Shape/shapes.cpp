@@ -22,14 +22,14 @@ namespace Shapes
 0,1,2
 	};
 
-	Triangle::Triangle(glm::mat4 globalTRS, Renderer::Renderer* renderer) : Shape(globalTRS, renderer, verticesObj, indexesObj)
+	Triangle::Triangle(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer) : Shape(globalTRS, color, renderer, verticesObj, indexesObj)
 	{
 
 	}
 
-	Triangle::Triangle(glm::mat4 globalTRS, Renderer::Renderer* renderer, Material::Material* material) : Shape(globalTRS, renderer, verticesObj, indexesObj, material)
+	Triangle::Triangle(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, Material::Material* material) : Shape(globalTRS, color, renderer, verticesObj, indexesObj, material)
 	{
-
+	
 	}
 
 	void Triangle::Update()

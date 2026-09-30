@@ -3,6 +3,9 @@
 #include <vector>
 
 #include "Modules/BaseGame/base_game.h"
+#include "glm/geometric.hpp"
+#include "Modules/Entity/entity.h"
+#include "Star.h"
 
 namespace Game
 {
@@ -10,6 +13,7 @@ namespace Game
 	{
 	private:
 		std::vector<Entity::Entity*> entities;
+		Star* star;
 
 	public:
 		Game();
