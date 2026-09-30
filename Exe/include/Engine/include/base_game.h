@@ -18,10 +18,12 @@ namespace BaseGame
 		bool isRunning = true;
 
 		Window::Window* window = nullptr;
-		Renderer::Renderer* renderer = nullptr;
 
 		void Loop();
 		void Init(int windowWidth, int windowHeight, const char* title);
+	protected:
+		Renderer::Renderer* renderer = nullptr;
+
 	public:
 		BaseGame();
 

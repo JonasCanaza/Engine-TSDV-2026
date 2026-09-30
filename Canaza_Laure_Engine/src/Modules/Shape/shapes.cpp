@@ -2,24 +2,32 @@
 
 namespace Shapes
 {
-	const std::vector<float> Triangle::vertices =
+	//equilatero
+	//static const std::vector<float> verticesObj =
+	//{
+	//	0.0f,  0.577f, 0.0f,  1.0f, 0.0f, 0.0f, 1.0f,  
+	//	-0.5f, -0.289f, 0.0f,  0.0f, 1.0f, 0.0f, 1.0f, 
+	//	 0.5f, -0.289f, 0.0f,  0.0f, 0.0f, 1.0f, 1.0f
+	//};
+
+	static const std::vector<float> verticesObj =
 	{
--0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f, 1.0f,
- 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f, 1.0f,
- 0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f, 1.0f
+		0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+			0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f
 	};
 
-	const std::vector<unsigned int> Triangle::indexes =
+	static const std::vector<unsigned int> indexesObj =
 	{
-		0,1,2
+0,1,2
 	};
 
-	Triangle::Triangle(Renderer::Renderer* renderer) : Shape(renderer, vertices, indexes)
+	Triangle::Triangle(glm::mat4 globalTRS, Renderer::Renderer* renderer) : Shape(globalTRS, renderer, verticesObj, indexesObj)
 	{
 
 	}
 
-	Triangle::Triangle(Renderer::Renderer* renderer, Material::Material* material) : Shape(renderer, vertices, indexes, material)
+	Triangle::Triangle(glm::mat4 globalTRS, Renderer::Renderer* renderer, Material::Material* material) : Shape(globalTRS, renderer, verticesObj, indexesObj, material)
 	{
 
 	}
@@ -31,7 +39,7 @@ namespace Shapes
 
 	void Triangle::Draw()
 	{
-		renderer->Draw(model.VAO, model.indexCount, material->GetShader()->GetId());
+		renderer->Draw(globalTRS, model.VAO, model.indexCount, material->GetShader()->GetId(), material->GetModelLocation(), material->GetViewLocation(), material->GetProjectionLocation());
 	}
 
 	Triangle::~Triangle()

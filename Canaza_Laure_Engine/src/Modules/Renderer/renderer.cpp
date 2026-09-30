@@ -5,14 +5,18 @@
 
 #include "glew.h"
 #include "glfw3.h"
+#include "glm/gtc/type_ptr.hpp"
 
 #include "Exceptions/exceptions.h"
 
 namespace Renderer
 {
-	Renderer::Renderer()
+	Renderer::Renderer(Window::Window* window)
 	{
+		this->window = window;
 
+		view = glm::mat4(1.0f);
+		projection = glm::ortho(0.0f, static_cast<float>(window->GetWidth()), static_cast<float>(window->GetHeight()), 0.0f, -1.0f, 1.0f);
 	}
 
 	void Renderer::Init()
@@ -35,9 +39,14 @@ namespace Renderer
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::Draw(unsigned int VAO, size_t indexCount, unsigned int shaderProgram)
+	void Renderer::Draw(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc)
 	{
 		glUseProgram(shaderProgram);
+
+		//1 es la cantidad de matrices y false es si la debe trasponer o no
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(globalTRS));
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
 		glBindVertexArray(VAO);
 
@@ -148,6 +157,11 @@ namespace Renderer
 	unsigned int Renderer::CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource)
 	{
 		return CreateShaderProgram(CreateShader(vertexShaderSource, GL_VERTEX_SHADER), CreateShader(fragmentShaderSource, GL_FRAGMENT_SHADER));
+	}
+
+	unsigned int Renderer::CreateUniformLocation(unsigned int shader, const char name[])
+	{
+		return glGetUniformLocation(shader, name);
 	}
 
 	void Renderer::DestroyShader(unsigned int shaderProgram)

@@ -9,14 +9,14 @@ namespace Entity2D
 {
 	using namespace Entity;
 
-	class Entity2D : public Entity
+	class ENGINE_API Entity2D : public Entity
 	{
 	protected:
 		Material::Material* material = nullptr;
 
 	public:
-		Entity2D(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
-		Entity2D(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes, Material::Material* material);
+		Entity2D(glm::mat4 globalTRS, Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
+		Entity2D(glm::mat4 globalTRS, Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes, Material::Material* material);
 
 		virtual ~Entity2D();
 	};

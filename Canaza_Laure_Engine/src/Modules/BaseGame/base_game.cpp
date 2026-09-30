@@ -42,7 +42,7 @@ namespace BaseGame
 			}
 
 			window = new Window::Window(windowWidth, windowHeight, title);
-			renderer = new Renderer::Renderer();
+			renderer = new Renderer::Renderer(window);
 			window->OpenWindow();
 			renderer->Init();
 		}
