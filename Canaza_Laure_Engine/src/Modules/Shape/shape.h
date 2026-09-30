@@ -9,16 +9,15 @@ namespace Shape
 {
 	using namespace Entity2D;
 
-	class Shape : public Entity2D
+	class ENGINE_API Shape : public Entity2D
 	{
 	private:
 
 	protected:
-		std::vector<float> vertices;
 
 	public:
-		Shape(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
-		Shape(Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes, Material::Material* material);
+		Shape(glm::mat4 globalTRS,Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
+		Shape(glm::mat4 globalTRS,Renderer::Renderer* renderer, const std::vector<float>& vertices, const std::vector<unsigned int>& indexes, Material::Material* material);
 																				 
 		virtual ~Shape();
 	};
