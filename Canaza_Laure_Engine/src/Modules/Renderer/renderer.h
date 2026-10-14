@@ -43,6 +43,7 @@ namespace Renderer
 		unsigned int CreateShaderProgram(unsigned int vertexShader, unsigned int fragmentShader);
 		unsigned int CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
 		unsigned int CreateUniformLocation(unsigned int shader, const char name[]);
+		unsigned int CreateTexture(int width, int height, unsigned char* data);
 		void DestroyShader(unsigned int shaderProgram);
 		void DestroyModel(Model& model);
 

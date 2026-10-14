@@ -37,6 +37,12 @@
     <Filter Include="src\Defines">
       <UniqueIdentifier>{d2524b55-22c6-4ca8-be0e-a898881c8a76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Modules\Sprite">
+      <UniqueIdentifier>{0f21f75e-6b51-407e-b0b4-6a150b2bb7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Modules\TextureImporter">
+      <UniqueIdentifier>{e23ff04b-205d-4c6c-8855-2e438e4fbd70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exceptions\exceptions.cpp">
@@ -68,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="src\Modules\Shape\shapes.cpp">
       <Filter>src\Modules\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\TextureImporter\TextureImporter.cpp">
+      <Filter>src\Modules\TextureImporter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="src\Modules\Shape\shapes.h">
       <Filter>src\Modules\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\TextureImporter\TextureImporter.h">
+      <Filter>src\Modules\TextureImporter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

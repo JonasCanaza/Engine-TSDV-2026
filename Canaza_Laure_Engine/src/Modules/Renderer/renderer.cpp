@@ -164,6 +164,22 @@ namespace Renderer
 		return glGetUniformLocation(shader, name);
 	}
 
+	unsigned int Renderer::CreateTexture(int width, int height, unsigned char* data)
+	{
+		unsigned int texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+	}
+
 	void Renderer::DestroyShader(unsigned int shaderProgram)
 	{
 		glDeleteProgram(shaderProgram);
