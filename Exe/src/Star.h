@@ -17,10 +17,10 @@ private:
 	Shapes::Triangle* triangle2;
 
 	float speed = minSpeed;
-	float speedModifier = 0.05;
-	float direction = 1;
-	const float minSpeed = 1;
-	const float maxSpeed = 10;
+	float speedModifier = 0.05f;
+	float direction = 1.f;
+	const float minSpeed = 1.f;
+	const float maxSpeed = 10.f;
 
 public:
 

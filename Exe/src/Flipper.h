@@ -14,7 +14,7 @@ public:
 	~Flipper();
 
 	void Move(float dir);
-	void Update() override;
+	void Update(float deltaTime) override;
 };
 
 	

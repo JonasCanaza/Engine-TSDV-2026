@@ -12,7 +12,7 @@ namespace Shapes
 		Triangle(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer);
 		Triangle(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, Material::Material* material);
 
-		void Update() override;
+		void Update(float deltaTime) override;
 		void Draw() override;
 
 		~Triangle();

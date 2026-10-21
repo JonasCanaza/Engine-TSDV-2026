@@ -32,8 +32,9 @@ namespace Shapes
 
 	}
 
-	void Triangle::Update()
+	void Triangle::Update(float deltaTime)
 	{
+		deltaTime;
 		Draw();
 	}
 
