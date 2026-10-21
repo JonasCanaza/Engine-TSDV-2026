@@ -13,12 +13,12 @@ namespace Entity
 		this->vertices = vertices;
 		this->indexes = indexes;
 
-		for (int i = 0; i < vertices.size() / 7; i++)
+		for (int i = 0; i < vertices.size() / 9; i++)
 		{
-			this->vertices[7 * i + 3] = color.r;
-			this->vertices[7 * i + 4] = color.g;
-			this->vertices[7 * i + 5] = color.b;
-			this->vertices[7 * i + 6] = color.a;
+			this->vertices[9 * i + 3] = color.r;
+			this->vertices[9 * i + 4] = color.g;
+			this->vertices[9 * i + 5] = color.b;
+			this->vertices[9 * i + 6] = color.a;
 		}
 
 		model = renderer->CreateModel(this->vertices, indexes);

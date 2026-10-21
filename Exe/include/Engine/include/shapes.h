@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Modules/Shape/shapes.h"
+#include "Modules/Shape/shape.h"
 
 namespace Shapes
 {

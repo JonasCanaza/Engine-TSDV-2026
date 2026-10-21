@@ -43,6 +43,7 @@ namespace BaseGame
 
 			window = new Window::Window(windowWidth, windowHeight, title);
 			renderer = new Renderer::Renderer(window);
+			textImporter = new TextureImporter::TextureImporter(renderer);
 			window->OpenWindow();
 			renderer->Init();
 		}
@@ -85,6 +86,7 @@ namespace BaseGame
 	{
 		delete window;
 		delete renderer;
+		delete textImporter;
 
 		OnDeinit();
 	}

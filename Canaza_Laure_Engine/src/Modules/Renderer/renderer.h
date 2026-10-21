@@ -7,6 +7,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "Modules/Window/window.h"
+#include "color_format.h"
 
 typedef unsigned int GLenum;
 
@@ -37,13 +38,14 @@ namespace Renderer
 
 		void Init();
 		void ClearScreen();
-		void Draw(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc);
+		void DrawShape(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc);
+		void DrawSprite(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc, unsigned int textureId);
 		Model CreateModel(const std::vector<float>& vertices, const std::vector<unsigned int>& indexes);
 		unsigned int CreateShader(const char* shaderSource, GLenum shaderType);
 		unsigned int CreateShaderProgram(unsigned int vertexShader, unsigned int fragmentShader);
 		unsigned int CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
 		unsigned int CreateUniformLocation(unsigned int shader, const char name[]);
-		unsigned int CreateTexture(int width, int height, unsigned char* data);
+		unsigned int CreateTexture(int width, int height, ColorFormat::ColorFormat format, unsigned char* data);
 		void DestroyShader(unsigned int shaderProgram);
 		void DestroyModel(Model& model);
 

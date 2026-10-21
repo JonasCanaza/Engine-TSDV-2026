@@ -39,9 +39,36 @@ namespace Renderer
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::Draw(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc)
+	void Renderer::DrawShape(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc)
 	{
 		glUseProgram(shaderProgram);
+
+		//1 es la cantidad de matrices y false es si la debe trasponer o no
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(globalTRS));
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+		glBindVertexArray(VAO);
+
+		glDrawElements(
+			GL_TRIANGLES,
+			(int)indexCount,
+			GL_UNSIGNED_INT,
+			(void*)0
+		);
+
+		glBindVertexArray(0);
+	}
+
+	void Renderer::DrawSprite(glm::mat4 globalTRS, unsigned int VAO, size_t indexCount, unsigned int shaderProgram, unsigned int modelLoc, unsigned int viewLoc, unsigned int projLoc, unsigned int textureId)
+	{
+		glUseProgram(shaderProgram);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, textureId);
+
+		int textLoc = glGetUniformLocation(shaderProgram, "ourTexture");
+		glUniform1i(textLoc, 0);
 
 		//1 es la cantidad de matrices y false es si la debe trasponer o no
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(globalTRS));
@@ -64,7 +91,7 @@ namespace Renderer
 	{
 		Model model;
 
-		model.verticesCount = vertices.size();
+		model.verticesCount = vertices.size() / 9;
 		model.indexCount = indexes.size();
 
 		glGenVertexArrays(1, &model.VAO);
@@ -72,17 +99,20 @@ namespace Renderer
 
 		glGenBuffers(1, &model.VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, model.VBO);
-		glBufferData(GL_ARRAY_BUFFER, model.verticesCount * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
 
 		glGenBuffers(1, &model.EBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indexCount * sizeof(float), indexes.data(), GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indexCount * sizeof(unsigned int), indexes.data(), GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 9, (void*)0);
 
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(3 * sizeof(float)));
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 9, (void*)(3 * sizeof(float)));
+
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 9, (void*)(7 * sizeof(float)));
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -164,7 +194,7 @@ namespace Renderer
 		return glGetUniformLocation(shader, name);
 	}
 
-	unsigned int Renderer::CreateTexture(int width, int height, unsigned char* data)
+	unsigned int Renderer::CreateTexture(int width, int height, ColorFormat::ColorFormat format, unsigned char* data)
 	{
 		unsigned int texture;
 		glGenTextures(1, &texture);
@@ -173,11 +203,40 @@ namespace Renderer
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 		if (data)
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			GLenum colorFormat = GL_RGBA;
+
+			switch (format)
+			{
+			case ColorFormat::ColorFormat::RGB:
+				colorFormat = GL_RGB;
+				break;
+			case ColorFormat::ColorFormat::RGBA:
+				colorFormat = GL_RGBA;
+				break;
+			case ColorFormat::ColorFormat::RED:
+				colorFormat = GL_RED;
+				break;
+			case ColorFormat::ColorFormat::ALPHA:
+				colorFormat = GL_ALPHA;
+				break;
+			default:
+				break;
+			}
+
+			//Permite dimensiones impares
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+			glTexImage2D(GL_TEXTURE_2D, 0, colorFormat, width, height, 0, colorFormat, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		return texture;
 	}
 
 	void Renderer::DestroyShader(unsigned int shaderProgram)

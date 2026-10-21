@@ -8,6 +8,7 @@
 #include "Defines/dll_define.h"
 #include "Modules/Window/window.h"
 #include "Modules/Renderer/renderer.h"
+#include "Modules/TextureImporter/TextureImporter.h"
 
 namespace BaseGame
 {
@@ -22,6 +23,7 @@ namespace BaseGame
 		void Init(int windowWidth, int windowHeight, const char* title);
 	protected:
 		Renderer::Renderer* renderer = nullptr;
+		TextureImporter::TextureImporter* textImporter = nullptr;
 
 	public:
 		BaseGame();

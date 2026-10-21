@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Modules/Renderer/renderer.h"
+#include "color_format.h"
 
 namespace TextureImporter
 {
@@ -11,7 +12,7 @@ namespace TextureImporter
 	public:
 		TextureImporter(Renderer::Renderer* renderer);
 
-		int ImportTexture(const char path[], int width, int height, int colorChannels);
+		int ImportTexture(const char path[], int width, int height, ColorFormat::ColorFormat format);
 
 		~TextureImporter();
 	};
