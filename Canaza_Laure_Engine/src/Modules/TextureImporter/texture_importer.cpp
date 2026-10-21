@@ -1,4 +1,4 @@
-#include "TextureImporter.h"
+#include "Modules/TextureImporter/texture_importer.h"
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION

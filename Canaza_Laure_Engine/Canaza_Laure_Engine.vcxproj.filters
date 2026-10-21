@@ -43,6 +43,9 @@
     <Filter Include="src\Modules\TextureImporter">
       <UniqueIdentifier>{e23ff04b-205d-4c6c-8855-2e438e4fbd70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Modules\Animation">
+      <UniqueIdentifier>{e517c1ef-e9dd-4699-b181-4a143c2a3cec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exceptions\exceptions.cpp">
@@ -75,10 +78,13 @@
     <ClCompile Include="src\Modules\Shape\shapes.cpp">
       <Filter>src\Modules\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\TextureImporter\TextureImporter.cpp">
+    <ClCompile Include="src\Modules\Animation\animation.cpp">
+      <Filter>src\Modules\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\TextureImporter\texture_importer.cpp">
       <Filter>src\Modules\TextureImporter</Filter>
     </ClCompile>
-    <ClCompile Include="src\Modules\Sprite\Sprite.cpp">
+    <ClCompile Include="src\Modules\Sprite\sprite.cpp">
       <Filter>src\Modules\Sprite</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,14 +122,23 @@
     <ClInclude Include="src\Modules\Shape\shapes.h">
       <Filter>src\Modules\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\TextureImporter\TextureImporter.h">
-      <Filter>src\Modules\TextureImporter</Filter>
-    </ClInclude>
     <ClInclude Include="src\color_format.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Modules\Sprite\Sprite.h">
+    <ClInclude Include="src\Modules\Animation\animation.h">
+      <Filter>src\Modules\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\TextureImporter\texture_importer.h">
+      <Filter>src\Modules\TextureImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Sprite\sprite.h">
       <Filter>src\Modules\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Animation\animation_frame.h">
+      <Filter>src\Modules\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Animation\uv_coords.h">
+      <Filter>src\Modules\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

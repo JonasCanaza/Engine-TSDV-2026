@@ -48,8 +48,42 @@ namespace Sprite
 		texture = textImporter->ImportTexture(path, width, height, format);
 	}
 
-	void Sprite::Update()
+	void Sprite::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds)
 	{
+		if (animation == nullptr)
+		{
+			animation = new Animation::Animation();
+		}
+
+		animation->AddFrame(framePosX, framePosY, frameWidth, frameHeight, textWidth, textHeight, durationInSeconds);
+	}
+
+	void Sprite::ChangeSprite(AnimationFrame::AnimationFrame* animationFrame)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			vertices[9 * i + 7] = animationFrame->uvCoords[i].u;
+			vertices[9 * i + 8] = animationFrame->uvCoords[i].v;
+		}
+
+		renderer->UpdateVBO(model.VBO, vertices);
+	}
+
+	void Sprite::Update(float deltaTime)
+	{
+		if (animation != nullptr)
+		{
+			animation->Update(deltaTime);
+
+			AnimationFrame::AnimationFrame* animationCurrentFrame = animation->GetCurrentFrame();
+
+			if (animationCurrentFrame != currentFrame)
+			{
+				currentFrame = animationCurrentFrame;
+				ChangeSprite(currentFrame);
+			}
+		}
+
 		Draw();
 	}
 
@@ -60,6 +94,9 @@ namespace Sprite
 
 	Sprite::~Sprite()
 	{
-
+		if (animation != nullptr)
+		{
+			delete animation;
+		}
 	}
 }

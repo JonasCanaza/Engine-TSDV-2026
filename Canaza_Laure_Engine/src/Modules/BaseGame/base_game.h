@@ -8,7 +8,7 @@
 #include "Defines/dll_define.h"
 #include "Modules/Window/window.h"
 #include "Modules/Renderer/renderer.h"
-#include "Modules/TextureImporter/TextureImporter.h"
+#include "Modules/TextureImporter/texture_importer.h"
 
 namespace BaseGame
 {
@@ -18,6 +18,7 @@ namespace BaseGame
 		bool isRunning = true;
 
 		Window::Window* window = nullptr;
+		float lastFrameTime = 0.f;
 
 		void Loop();
 		void Init(int windowWidth, int windowHeight, const char* title);
@@ -31,7 +32,7 @@ namespace BaseGame
 		void Play(int windowWidth, int windowHeight, const char* windowTitle);
 
 		virtual void OnInit();
-		virtual void OnUpdate();
+		virtual void OnUpdate(float deltaTime);
 		virtual void OnDeinit();
 
 		virtual ~BaseGame();
