@@ -78,6 +78,9 @@
     <ClCompile Include="src\Modules\TextureImporter\TextureImporter.cpp">
       <Filter>src\Modules\TextureImporter</Filter>
     </ClCompile>
+    <ClCompile Include="src\Modules\Sprite\Sprite.cpp">
+      <Filter>src\Modules\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Exceptions\exceptions.h">
@@ -115,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="src\Modules\TextureImporter\TextureImporter.h">
       <Filter>src\Modules\TextureImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\color_format.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Sprite\Sprite.h">
+      <Filter>src\Modules\Sprite</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
