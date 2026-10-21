@@ -65,9 +65,9 @@ namespace Entity
 		globalTRS = identity;
 	}
 
-	void Entity::Update()
+	void Entity::Update(float deltaTime)
 	{
-
+		deltaTime;
 	}
 
 	Entity::~Entity()

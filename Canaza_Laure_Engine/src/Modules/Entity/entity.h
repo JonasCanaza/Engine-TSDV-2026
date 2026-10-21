@@ -40,7 +40,7 @@ namespace Entity
 		void Rotation(float rotationZ);
 		void Scale(float x, float y, float z);
 
-		virtual void Update();
+		virtual void Update(float deltaTime);
 		virtual void Draw() = 0;
 
 		virtual ~Entity();

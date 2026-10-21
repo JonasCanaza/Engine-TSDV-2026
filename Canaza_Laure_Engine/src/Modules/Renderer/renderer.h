@@ -46,6 +46,7 @@ namespace Renderer
 		unsigned int CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
 		unsigned int CreateUniformLocation(unsigned int shader, const char name[]);
 		unsigned int CreateTexture(int width, int height, ColorFormat::ColorFormat format, unsigned char* data);
+		void UpdateVBO(unsigned int VBO, std::vector<float>& vertices);
 		void DestroyShader(unsigned int shaderProgram);
 		void DestroyModel(Model& model);
 

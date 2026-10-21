@@ -18,12 +18,18 @@ namespace BaseGame
 		/* Loop until the user closes the window */
 		while (!window->GetWindowShouldClose())
 		{
+			float currentFrameTime = static_cast<float>(glfwGetTime());
+
+			float deltaTime = currentFrameTime - lastFrameTime;
+
+			lastFrameTime = currentFrameTime;
+
 			renderer->ClearScreen();
 
 			/* Poll for and process events */
 			glfwPollEvents();
 
-			OnUpdate();
+			OnUpdate(deltaTime);
 
 			window->Update();
 		}
@@ -72,9 +78,9 @@ namespace BaseGame
 
 	}
 
-	void BaseGame::OnUpdate()
+	void BaseGame::OnUpdate(float deltaTime)
 	{
-
+		deltaTime;
 	}
 
 	void BaseGame::OnDeinit()

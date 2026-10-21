@@ -19,7 +19,7 @@ namespace Game
 		Game();
 
 		void OnInit() override;
-		void OnUpdate() override;
+		void OnUpdate(float deltaTime) override;
 		void OnDeinit() override;
 
 		~Game();

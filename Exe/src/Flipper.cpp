@@ -13,8 +13,10 @@ void Flipper::Move(float dir)
 	Translate(0.0f, 30 * dir, 0.0f);
 }
 
-void Flipper::Update()
+void Flipper::Update(float deltaTime)
 {
+	deltaTime;
+
 	Move(isMovingUp);
 
 	if (pos.y <= 0)
