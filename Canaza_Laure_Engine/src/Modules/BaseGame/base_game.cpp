@@ -51,6 +51,7 @@ namespace BaseGame
 			renderer = new Renderer::Renderer(window);
 			textImporter = new TextureImporter::TextureImporter(renderer);
 			window->OpenWindow();
+			input = new Input::Input(window);
 			renderer->Init();
 		}
 		catch (OpenWindowFailed exception)
@@ -93,6 +94,7 @@ namespace BaseGame
 		delete window;
 		delete renderer;
 		delete textImporter;
+		delete input;
 
 		OnDeinit();
 	}

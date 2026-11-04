@@ -9,6 +9,7 @@
 #include "Modules/Window/window.h"
 #include "Modules/Renderer/renderer.h"
 #include "Modules/TextureImporter/texture_importer.h"
+#include "Modules/Input/input.h"
 
 namespace BaseGame
 {
@@ -25,6 +26,7 @@ namespace BaseGame
 	protected:
 		Renderer::Renderer* renderer = nullptr;
 		TextureImporter::TextureImporter* textImporter = nullptr;
+		Input::Input* input = nullptr;
 
 	public:
 		BaseGame();

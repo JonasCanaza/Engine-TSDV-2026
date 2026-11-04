@@ -24,6 +24,7 @@ namespace Window
 		int GetWidth();
 		int GetHeight();
 		const char* GetTitle();
+		GLFWwindow* GetGLFWWindow();
 
 		~Window();
 	};

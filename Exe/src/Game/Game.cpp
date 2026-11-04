@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "Flipper.h"
 #include "Modules/Sprite/Sprite.h"
+#include "engine_input.h"
 
 namespace Game
 {
@@ -27,11 +27,13 @@ namespace Game
 		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/spritesheet-characters-default.png", 902, 902, ColorFormat::ColorFormat::RGBA);
 		anim->Scale(300.0f, 300.0f, 1.0f);
 		anim->Translation(900.0f, 300.0f, 0.0f);
-		anim->AddFrame(128.f,0.f,128.f,128.f,902,902,3);
-		anim->AddFrame(256.f,0.f,128.f,128.f,902,902,3);
+		anim->AddFrame(128.f, 0.f, 128.f, 128.f, 902, 902, 3);
+		anim->AddFrame(256.f, 0.f, 128.f, 128.f, 902, 902, 3);
 
 		flipper->Translation(1400.0f, 300.0f, 0.0f);
 		flipper->Scale(300.0f, 300.0f, 1.0f);
+
+		this->flipper = flipper;
 
 		entities.push_back(flipper);
 		entities.push_back(sprite);
@@ -46,6 +48,11 @@ namespace Game
 		}
 
 		star->Update();
+
+		if (input->GetIsKeyDown(EngineInputs::EngineInput::ENGINE_KEY_D))
+		{
+			flipper->Translate(1000.f * deltaTime, 0.f, 0.f);
+		}
 	}
 
 	void Game::OnDeinit()

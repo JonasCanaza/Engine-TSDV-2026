@@ -52,6 +52,11 @@ namespace Window
 		return title;
 	}
 
+	GLFWwindow* Window::GetGLFWWindow()
+	{
+		return glfwWindow;
+	}
+
 	Window::~Window()
 	{
 

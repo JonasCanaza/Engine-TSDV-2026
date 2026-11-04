@@ -24,6 +24,7 @@
     <ClCompile Include="src\Modules\BaseGame\base_game.cpp" />
     <ClCompile Include="src\Modules\Entity2D\entity_2d.cpp" />
     <ClCompile Include="src\Modules\Entity\entity.cpp" />
+    <ClCompile Include="src\Modules\Input\input.cpp" />
     <ClCompile Include="src\Modules\Material\material.cpp" />
     <ClCompile Include="src\Modules\Renderer\renderer.cpp" />
     <ClCompile Include="src\Modules\Shape\shape.cpp" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="src\color_format.h" />
     <ClInclude Include="src\Defines\dll_define.h" />
+    <ClInclude Include="src\engine_input.h" />
     <ClInclude Include="src\Exceptions\exceptions.h" />
     <ClInclude Include="src\Modules\Animation\animation.h" />
     <ClInclude Include="src\Modules\Animation\animation_frame.h" />
@@ -43,6 +45,7 @@
     <ClInclude Include="src\Modules\BaseGame\base_game.h" />
     <ClInclude Include="src\Modules\Entity2D\entity_2d.h" />
     <ClInclude Include="src\Modules\Entity\entity.h" />
+    <ClInclude Include="src\Modules\Input\input.h" />
     <ClInclude Include="src\Modules\Material\material.h" />
     <ClInclude Include="src\Modules\Renderer\renderer.h" />
     <ClInclude Include="src\Modules\Shape\shape.h" />

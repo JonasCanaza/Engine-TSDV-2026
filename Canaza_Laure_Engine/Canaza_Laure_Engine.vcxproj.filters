@@ -46,6 +46,9 @@
     <Filter Include="src\Modules\Animation">
       <UniqueIdentifier>{e517c1ef-e9dd-4699-b181-4a143c2a3cec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Modules\Input">
+      <UniqueIdentifier>{4618cf6c-7534-47d9-ab3a-ba72250d6cb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exceptions\exceptions.cpp">
@@ -86,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="src\Modules\Sprite\sprite.cpp">
       <Filter>src\Modules\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\Input\input.cpp">
+      <Filter>src\Modules\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="src\Modules\Animation\uv_coords.h">
       <Filter>src\Modules\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\Input\input.h">
+      <Filter>src\Modules\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine_input.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
