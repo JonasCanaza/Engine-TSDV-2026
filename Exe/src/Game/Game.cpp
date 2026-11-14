@@ -30,12 +30,12 @@ namespace Game
 		anim->AddFrame(128.f, 0.f, 128.f, 128.f, 902, 902, 3);
 		anim->AddFrame(256.f, 0.f, 128.f, 128.f, 902, 902, 3);
 
-		flipper->Translation(1400.0f, 300.0f, 0.0f);
-		flipper->Scale(300.0f, 300.0f, 1.0f);
+		//flipper->Translation(1400.0f, 300.0f, 0.0f);
+		//flipper->Scale(300.0f, 300.0f, 1.0f);
 
-		this->flipper = flipper;
+		//this->flipper = flipper;
 
-		entities.push_back(flipper);
+		//entities.push_back(flipper);
 		entities.push_back(sprite);
 		entities.push_back(anim);
 	}
