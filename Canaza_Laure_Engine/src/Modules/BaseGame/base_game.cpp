@@ -29,6 +29,7 @@ namespace BaseGame
 			/* Poll for and process events */
 			glfwPollEvents();
 
+			input->Update();
 			OnUpdate(deltaTime);
 
 			window->Update();

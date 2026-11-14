@@ -1,153 +1,197 @@
 #include "Modules/Input/input.h"
 
+#define GLFW_INCLUDE_NONE
 #include "glfw3.h"
 
 namespace Input
 {
+	InputData Input::engineInputToGLFW[EngineInputs::maxInputs] =
+	{
+		InputData(GLFW_KEY_SPACE),
+		InputData(GLFW_KEY_APOSTROPHE),
+		InputData(GLFW_KEY_COMMA),
+		InputData(GLFW_KEY_MINUS),
+		InputData(GLFW_KEY_PERIOD),
+		InputData(GLFW_KEY_SLASH),
+		InputData(GLFW_KEY_0),
+		InputData(GLFW_KEY_1),
+		InputData(GLFW_KEY_2),
+		InputData(GLFW_KEY_3),
+		InputData(GLFW_KEY_4),
+		InputData(GLFW_KEY_5),
+		InputData(GLFW_KEY_6),
+		InputData(GLFW_KEY_7),
+		InputData(GLFW_KEY_8),
+		InputData(GLFW_KEY_9),
+		InputData(GLFW_KEY_SEMICOLON),
+		InputData(GLFW_KEY_EQUAL),
+		InputData(GLFW_KEY_A),
+		InputData(GLFW_KEY_B),
+		InputData(GLFW_KEY_C),
+		InputData(GLFW_KEY_D),
+		InputData(GLFW_KEY_E),
+		InputData(GLFW_KEY_F),
+		InputData(GLFW_KEY_G),
+		InputData(GLFW_KEY_H),
+		InputData(GLFW_KEY_I),
+		InputData(GLFW_KEY_J),
+		InputData(GLFW_KEY_K),
+		InputData(GLFW_KEY_L),
+		InputData(GLFW_KEY_M),
+		InputData(GLFW_KEY_N),
+		InputData(GLFW_KEY_O),
+		InputData(GLFW_KEY_P),
+		InputData(GLFW_KEY_Q),
+		InputData(GLFW_KEY_R),
+		InputData(GLFW_KEY_S),
+		InputData(GLFW_KEY_T),
+		InputData(GLFW_KEY_U),
+		InputData(GLFW_KEY_V),
+		InputData(GLFW_KEY_W),
+		InputData(GLFW_KEY_X),
+		InputData(GLFW_KEY_Y),
+		InputData(GLFW_KEY_Z),
+		InputData(GLFW_KEY_LEFT_BRACKET),
+		InputData(GLFW_KEY_BACKSLASH),
+		InputData(GLFW_KEY_RIGHT_BRACKET),
+		InputData(GLFW_KEY_GRAVE_ACCENT),
+		InputData(GLFW_KEY_WORLD_1),
+		InputData(GLFW_KEY_WORLD_2),
+		InputData(GLFW_KEY_ESCAPE),
+		InputData(GLFW_KEY_ENTER),
+		InputData(GLFW_KEY_TAB),
+		InputData(GLFW_KEY_BACKSPACE),
+		InputData(GLFW_KEY_INSERT),
+		InputData(GLFW_KEY_DELETE),
+		InputData(GLFW_KEY_RIGHT),
+		InputData(GLFW_KEY_LEFT),
+		InputData(GLFW_KEY_DOWN),
+		InputData(GLFW_KEY_UP),
+		InputData(GLFW_KEY_PAGE_UP),
+		InputData(GLFW_KEY_PAGE_DOWN),
+		InputData(GLFW_KEY_HOME),
+		InputData(GLFW_KEY_END),
+		InputData(GLFW_KEY_CAPS_LOCK),
+		InputData(GLFW_KEY_SCROLL_LOCK),
+		InputData(GLFW_KEY_NUM_LOCK),
+		InputData(GLFW_KEY_PRINT_SCREEN),
+		InputData(GLFW_KEY_PAUSE),
+		InputData(GLFW_KEY_F1),
+		InputData(GLFW_KEY_F2),
+		InputData(GLFW_KEY_F3),
+		InputData(GLFW_KEY_F4),
+		InputData(GLFW_KEY_F5),
+		InputData(GLFW_KEY_F6),
+		InputData(GLFW_KEY_F7),
+		InputData(GLFW_KEY_F8),
+		InputData(GLFW_KEY_F9),
+		InputData(GLFW_KEY_F10),
+		InputData(GLFW_KEY_F11),
+		InputData(GLFW_KEY_F12),
+		InputData(GLFW_KEY_F13),
+		InputData(GLFW_KEY_F14),
+		InputData(GLFW_KEY_F15),
+		InputData(GLFW_KEY_F16),
+		InputData(GLFW_KEY_F17),
+		InputData(GLFW_KEY_F18),
+		InputData(GLFW_KEY_F19),
+		InputData(GLFW_KEY_F20),
+		InputData(GLFW_KEY_F21),
+		InputData(GLFW_KEY_F22),
+		InputData(GLFW_KEY_F23),
+		InputData(GLFW_KEY_F24),
+		InputData(GLFW_KEY_F25),
+		InputData(GLFW_KEY_KP_0),
+		InputData(GLFW_KEY_KP_1),
+		InputData(GLFW_KEY_KP_2),
+		InputData(GLFW_KEY_KP_3),
+		InputData(GLFW_KEY_KP_4),
+		InputData(GLFW_KEY_KP_5),
+		InputData(GLFW_KEY_KP_6),
+		InputData(GLFW_KEY_KP_7),
+		InputData(GLFW_KEY_KP_8),
+		InputData(GLFW_KEY_KP_9),
+		InputData(GLFW_KEY_KP_DECIMAL),
+		InputData(GLFW_KEY_KP_DIVIDE),
+		InputData(GLFW_KEY_KP_MULTIPLY),
+		InputData(GLFW_KEY_KP_SUBTRACT),
+		InputData(GLFW_KEY_KP_ADD),
+		InputData(GLFW_KEY_KP_ENTER),
+		InputData(GLFW_KEY_KP_EQUAL),
+		InputData(GLFW_KEY_LEFT_SHIFT),
+		InputData(GLFW_KEY_LEFT_CONTROL),
+		InputData(GLFW_KEY_LEFT_ALT),
+		InputData(GLFW_KEY_LEFT_SUPER),
+		InputData(GLFW_KEY_RIGHT_SHIFT),
+		InputData(GLFW_KEY_RIGHT_CONTROL),
+		InputData(GLFW_KEY_RIGHT_ALT),
+		InputData(GLFW_KEY_RIGHT_SUPER),
+		InputData(GLFW_KEY_MENU),
+	};
+
+	InputData::InputData(int glfwId)
+	{
+		this->glfwId = glfwId;
+	}
+
 	Input::Input(Window::Window* window)
 	{
 		this->window = window;
+	}
 
-		Input::engineInputToGLFW =
+	void Input::Update()
+	{
+
+		GLFWwindow* glfwWindow = window->GetGLFWWindow();
+
+		for (int i = 0; i < EngineInputs::maxInputs; i++)
 		{
-			{EngineInput::ENGINE_KEY_SPACE,GLFW_KEY_SPACE},
-			{EngineInput::ENGINE_KEY_APOSTROPHE,GLFW_KEY_APOSTROPHE},
-			{EngineInput::ENGINE_KEY_COMMA,GLFW_KEY_COMMA},
-			{EngineInput::ENGINE_KEY_MINUS,GLFW_KEY_MINUS},
-			{EngineInput::ENGINE_KEY_PERIOD,GLFW_KEY_PERIOD},
-			{EngineInput::ENGINE_KEY_SLASH,GLFW_KEY_SLASH},
-			{EngineInput::ENGINE_KEY_0,GLFW_KEY_0},
-			{EngineInput::ENGINE_KEY_1,GLFW_KEY_1},
-			{EngineInput::ENGINE_KEY_2,GLFW_KEY_2},
-			{EngineInput::ENGINE_KEY_3,GLFW_KEY_3},
-			{EngineInput::ENGINE_KEY_4,GLFW_KEY_4},
-			{EngineInput::ENGINE_KEY_5,GLFW_KEY_5},
-			{EngineInput::ENGINE_KEY_6,GLFW_KEY_6},
-			{EngineInput::ENGINE_KEY_7,GLFW_KEY_7},
-			{EngineInput::ENGINE_KEY_8,GLFW_KEY_8},
-			{EngineInput::ENGINE_KEY_9,GLFW_KEY_9},
-			{EngineInput::ENGINE_KEY_SEMICOLON,GLFW_KEY_SEMICOLON},
-			{EngineInput::ENGINE_KEY_EQUAL,GLFW_KEY_EQUAL},
-			{EngineInput::ENGINE_KEY_A,GLFW_KEY_A},
-			{EngineInput::ENGINE_KEY_B,GLFW_KEY_B},
-			{EngineInput::ENGINE_KEY_C,GLFW_KEY_C},
-			{EngineInput::ENGINE_KEY_D,GLFW_KEY_D},
-			{EngineInput::ENGINE_KEY_E,GLFW_KEY_E},
-			{EngineInput::ENGINE_KEY_F,GLFW_KEY_F},
-			{EngineInput::ENGINE_KEY_G,GLFW_KEY_G},
-			{EngineInput::ENGINE_KEY_H,GLFW_KEY_H},
-			{EngineInput::ENGINE_KEY_I,GLFW_KEY_I},
-			{EngineInput::ENGINE_KEY_J,GLFW_KEY_J},
-			{EngineInput::ENGINE_KEY_K,GLFW_KEY_K},
-			{EngineInput::ENGINE_KEY_L,GLFW_KEY_L},
-			{EngineInput::ENGINE_KEY_M,GLFW_KEY_M},
-			{EngineInput::ENGINE_KEY_N,GLFW_KEY_N},
-			{EngineInput::ENGINE_KEY_O,GLFW_KEY_O},
-			{EngineInput::ENGINE_KEY_P,GLFW_KEY_P},
-			{EngineInput::ENGINE_KEY_Q,GLFW_KEY_Q},
-			{EngineInput::ENGINE_KEY_R,GLFW_KEY_R},
-			{EngineInput::ENGINE_KEY_S,GLFW_KEY_S},
-			{EngineInput::ENGINE_KEY_T,GLFW_KEY_T},
-			{EngineInput::ENGINE_KEY_U,GLFW_KEY_U},
-			{EngineInput::ENGINE_KEY_V,GLFW_KEY_V},
-			{EngineInput::ENGINE_KEY_W,GLFW_KEY_W},
-			{EngineInput::ENGINE_KEY_X,GLFW_KEY_X},
-			{EngineInput::ENGINE_KEY_Y,GLFW_KEY_Y},
-			{EngineInput::ENGINE_KEY_Z,GLFW_KEY_Z},
-			{EngineInput::ENGINE_KEY_LEFT_BRACKET,GLFW_KEY_LEFT_BRACKET},
-			{EngineInput::ENGINE_KEY_BACKSLASH,GLFW_KEY_BACKSLASH},
-			{EngineInput::ENGINE_KEY_RIGHT_BRACKET,GLFW_KEY_RIGHT_BRACKET},
-			{EngineInput::ENGINE_KEY_GRAVE_ACCENT,GLFW_KEY_GRAVE_ACCENT},
-			{EngineInput::ENGINE_KEY_WORLD_1,GLFW_KEY_WORLD_1},
-			{EngineInput::ENGINE_KEY_WORLD_2,GLFW_KEY_WORLD_2},
-			{EngineInput::ENGINE_KEY_ESCAPE ,GLFW_KEY_ESCAPE },
-			{EngineInput::ENGINE_KEY_ENTER,GLFW_KEY_ENTER},
-			{EngineInput::ENGINE_KEY_TAB,GLFW_KEY_TAB},
-			{EngineInput::ENGINE_KEY_BACKSPACE,GLFW_KEY_BACKSPACE},
-			{EngineInput::ENGINE_KEY_INSERT,GLFW_KEY_INSERT},
-			{EngineInput::ENGINE_KEY_DELETE,GLFW_KEY_DELETE},
-			{EngineInput::ENGINE_KEY_RIGHT,GLFW_KEY_RIGHT},
-			{EngineInput::ENGINE_KEY_LEFT,GLFW_KEY_LEFT},
-			{EngineInput::ENGINE_KEY_DOWN,GLFW_KEY_DOWN},
-			{EngineInput::ENGINE_KEY_UP,GLFW_KEY_UP},
-			{EngineInput::ENGINE_KEY_PAGE_UP,GLFW_KEY_PAGE_UP},
-			{EngineInput::ENGINE_KEY_PAGE_DOWN,GLFW_KEY_PAGE_DOWN},
-			{EngineInput::ENGINE_KEY_HOME,GLFW_KEY_HOME},
-			{EngineInput::ENGINE_KEY_END,GLFW_KEY_END},
-			{EngineInput::ENGINE_KEY_CAPS_LOCK,GLFW_KEY_CAPS_LOCK},
-			{EngineInput::ENGINE_KEY_SCROLL_LOCK,GLFW_KEY_SCROLL_LOCK},
-			{EngineInput::ENGINE_KEY_NUM_LOCK,GLFW_KEY_NUM_LOCK},
-			{EngineInput::ENGINE_KEY_PRINT_SCREEN,GLFW_KEY_PRINT_SCREEN},
-			{EngineInput::ENGINE_KEY_PAUSE,GLFW_KEY_PAUSE},
-			{EngineInput::ENGINE_KEY_F1,GLFW_KEY_F1},
-			{EngineInput::ENGINE_KEY_F2,GLFW_KEY_F2},
-			{EngineInput::ENGINE_KEY_F3,GLFW_KEY_F3},
-			{EngineInput::ENGINE_KEY_F4,GLFW_KEY_F4},
-			{EngineInput::ENGINE_KEY_F5,GLFW_KEY_F5},
-			{EngineInput::ENGINE_KEY_F6,GLFW_KEY_F6},
-			{EngineInput::ENGINE_KEY_F7,GLFW_KEY_F7},
-			{EngineInput::ENGINE_KEY_F8,GLFW_KEY_F8},
-			{EngineInput::ENGINE_KEY_F9,GLFW_KEY_F9},
-			{EngineInput::ENGINE_KEY_F10,GLFW_KEY_F10},
-			{EngineInput::ENGINE_KEY_F11,GLFW_KEY_F11},
-			{EngineInput::ENGINE_KEY_F12,GLFW_KEY_F12},
-			{EngineInput::ENGINE_KEY_F13,GLFW_KEY_F13},
-			{EngineInput::ENGINE_KEY_F14,GLFW_KEY_F14},
-			{EngineInput::ENGINE_KEY_F15,GLFW_KEY_F15},
-			{EngineInput::ENGINE_KEY_F16,GLFW_KEY_F16},
-			{EngineInput::ENGINE_KEY_F17,GLFW_KEY_F17},
-			{EngineInput::ENGINE_KEY_F18,GLFW_KEY_F18},
-			{EngineInput::ENGINE_KEY_F19,GLFW_KEY_F19},
-			{EngineInput::ENGINE_KEY_F20,GLFW_KEY_F20},
-			{EngineInput::ENGINE_KEY_F21,GLFW_KEY_F21},
-			{EngineInput::ENGINE_KEY_F22,GLFW_KEY_F22},
-			{EngineInput::ENGINE_KEY_F23,GLFW_KEY_F23},
-			{EngineInput::ENGINE_KEY_F24,GLFW_KEY_F24},
-			{EngineInput::ENGINE_KEY_F25,GLFW_KEY_F25},
-			{EngineInput::ENGINE_KEY_KP_0,GLFW_KEY_KP_0},
-			{EngineInput::ENGINE_KEY_KP_1,GLFW_KEY_KP_1},
-			{EngineInput::ENGINE_KEY_KP_2,GLFW_KEY_KP_2},
-			{EngineInput::ENGINE_KEY_KP_3,GLFW_KEY_KP_3},
-			{EngineInput::ENGINE_KEY_KP_4,GLFW_KEY_KP_4},
-			{EngineInput::ENGINE_KEY_KP_5,GLFW_KEY_KP_5},
-			{EngineInput::ENGINE_KEY_KP_6,GLFW_KEY_KP_6},
-			{EngineInput::ENGINE_KEY_KP_7,GLFW_KEY_KP_7},
-			{EngineInput::ENGINE_KEY_KP_8,GLFW_KEY_KP_8},
-			{EngineInput::ENGINE_KEY_KP_9,GLFW_KEY_KP_9},
-			{EngineInput::ENGINE_KEY_KP_DECIMAL,GLFW_KEY_KP_DECIMAL},
-			{EngineInput::ENGINE_KEY_KP_DIVIDE,GLFW_KEY_KP_DIVIDE},
-			{EngineInput::ENGINE_KEY_KP_MULTIPLY,GLFW_KEY_KP_MULTIPLY},
-			{EngineInput::ENGINE_KEY_KP_SUBTRACT,GLFW_KEY_KP_SUBTRACT},
-			{EngineInput::ENGINE_KEY_KP_ADD,GLFW_KEY_KP_ADD},
-			{EngineInput::ENGINE_KEY_KP_ENTER,GLFW_KEY_KP_ENTER},
-			{EngineInput::ENGINE_KEY_KP_EQUAL,GLFW_KEY_KP_EQUAL},
-			{EngineInput::ENGINE_KEY_LEFT_SHIFT,GLFW_KEY_LEFT_SHIFT},
-			{EngineInput::ENGINE_KEY_LEFT_CONTROL,GLFW_KEY_LEFT_CONTROL},
-			{EngineInput::ENGINE_KEY_LEFT_ALT,GLFW_KEY_LEFT_ALT},
-			{EngineInput::ENGINE_KEY_LEFT_SUPER,GLFW_KEY_LEFT_SUPER},
-			{EngineInput::ENGINE_KEY_RIGHT_SHIFT,GLFW_KEY_RIGHT_SHIFT},
-			{EngineInput::ENGINE_KEY_RIGHT_CONTROL,GLFW_KEY_RIGHT_CONTROL},
-			{EngineInput::ENGINE_KEY_RIGHT_ALT,GLFW_KEY_RIGHT_ALT},
-			{EngineInput::ENGINE_KEY_RIGHT_SUPER,GLFW_KEY_RIGHT_SUPER},
-			{EngineInput::ENGINE_KEY_MENU,GLFW_KEY_MENU},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_1,GLFW_MOUSE_BUTTON_1},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_2,GLFW_MOUSE_BUTTON_2},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_3,GLFW_MOUSE_BUTTON_3},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_4,GLFW_MOUSE_BUTTON_4},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_5,GLFW_MOUSE_BUTTON_5},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_6,GLFW_MOUSE_BUTTON_6},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_7,GLFW_MOUSE_BUTTON_7},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_8,GLFW_MOUSE_BUTTON_8},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_LAST,GLFW_MOUSE_BUTTON_LAST},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_LEFT,GLFW_MOUSE_BUTTON_LEFT},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_RIGHT,GLFW_MOUSE_BUTTON_RIGHT},
-			{EngineInput::ENGINE_KEY_MENU_MOUSE_BUTTON_MIDDLE,GLFW_MOUSE_BUTTON_MIDDLE}
-		};
+			InputData& currentInputData = engineInputToGLFW[i];
+
+			if (glfwGetKey(glfwWindow, currentInputData.glfwId) == GLFW_PRESS)
+			{
+				if (currentInputData.inputState == EngineInputState::KeyUp
+					|| currentInputData.inputState == EngineInputState::JustReleased)
+				{
+					currentInputData.inputState = EngineInputState::KeyPressed;
+				}
+				else if (currentInputData.inputState == EngineInputState::KeyPressed)
+				{
+					currentInputData.inputState = EngineInputState::KeyDown;
+				}
+			}
+			else
+			{
+				if (currentInputData.inputState == EngineInputState::KeyDown || currentInputData.inputState == EngineInputState::KeyPressed)
+				{
+					currentInputData.inputState = EngineInputState::JustReleased;
+				}
+				else
+				{
+					currentInputData.inputState = EngineInputState::KeyUp;
+				}
+			}
+		}
+	}
+
+	bool Input::GetIsKeyPressed(EngineInput input)
+	{
+		return engineInputToGLFW[int(input)].inputState == EngineInputState::KeyPressed;
 	}
 
 	bool Input::GetIsKeyDown(EngineInput input)
 	{
-		return glfwGetKey(window->GetGLFWWindow(), engineInputToGLFW[input]) == GLFW_PRESS;
+		return engineInputToGLFW[int(input)].inputState == EngineInputState::KeyDown;
+	}
+
+	bool Input::GetIsKeyJustReleased(EngineInput input)
+	{
+		return engineInputToGLFW[int(input)].inputState == EngineInputState::JustReleased;
+	}
+
+	bool Input::GetIsKeyUp(EngineInput input)
+	{
+		return engineInputToGLFW[int(input)].inputState == EngineInputState::KeyUp;
 	}
 
 	Input::~Input()
