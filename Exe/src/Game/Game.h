@@ -20,7 +20,7 @@ namespace Game
 		Star* star = nullptr;
 		Flipper* flipper = nullptr;
 
-		const float playerSpeed = 1000;
+		const float playerSpeed = 300;
 
 		Sprite::Sprite* player;
 		Vec3::Vec3 direction;
