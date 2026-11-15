@@ -29,9 +29,13 @@ namespace Game
 		idleAnimation->AddFrame(96.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 		idleAnimation->AddFrame(144.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 
-		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA,idleAnimation);
+		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA, idleAnimation);
 		anim->Scale(300.0f, 300.0f, 1.0f);
 		anim->Translation(900.0f, 300.0f, 0.0f);
+
+		Sprite::Sprite* anim2 = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA, idleAnimation);
+		anim2->Scale(300.0f, 300.0f, 1.0f);
+		anim2->Translation(1200.0f, 300.0f, 0.0f);
 
 		downAnimation = new Animation::Animation();
 		downAnimation->AddFrame(0.f, 192.f, 48.f, 48.f, 192, 864, 0.75f);
@@ -58,6 +62,8 @@ namespace Game
 		rightAnimation->AddFrame(144.f, 336.f, 48.f, 48.f, 192, 864, 0.75f);
 
 		player = anim;
+		player->SetColliderScale(Vec3::Vec3(13.f / 48.f, 18.f / 48.f, 1.0f));
+		anim2->SetColliderScale(Vec3::Vec3(13.f / 48.f, 18.f / 48.f, 1.0f));
 
 		flipper->Translation(1400.0f, 300.0f, 0.0f);
 		flipper->Scale(300.0f, 300.0f, 1.0f);
@@ -67,6 +73,7 @@ namespace Game
 		entities.push_back(flipper);
 		entities.push_back(sprite);
 		entities.push_back(anim);
+		entities.push_back(anim2);
 	}
 
 	void Game::OnUpdate(float deltaTime)
@@ -77,6 +84,7 @@ namespace Game
 		}
 
 		star->Update();
+		HandleCollisions();
 
 		PlayerInput(deltaTime);
 	}
@@ -88,12 +96,36 @@ namespace Game
 			delete entities[i];
 		}
 
+		delete flipper;
+
 		delete idleAnimation;
 		delete upAnimation;
 		delete downAnimation;
 		delete leftAnimation;
 		delete rightAnimation;
 		delete star;
+	}
+
+	void Game::HandleCollisions()
+	{
+		//for (int i = 0; i < entities.size() - 1; i++)
+		//{
+		//	for (int j = i + 1; j < entities.size(); j++)
+		//	{
+		//		if (collisionManager->AreColliding(entities[i], entities[j]))
+		//		{
+		//			std::cout << "Collider1: " << i << " Collider2: " << j;
+		//		}
+		//	}
+		//}
+
+		for (int i = 0; i < entities.size(); i++)
+		{
+			if (collisionManager->AreColliding(player, entities[i]))
+			{
+
+			}
+		}
 	}
 
 	void Game::PlayerInput(float deltaTime)

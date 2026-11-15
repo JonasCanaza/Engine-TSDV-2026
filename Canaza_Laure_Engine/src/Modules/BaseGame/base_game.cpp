@@ -54,6 +54,7 @@ namespace BaseGame
 			window->OpenWindow();
 			input = new Input::Input(window);
 			renderer->Init();
+			collisionManager = new CollisionManager::CollisionManager();
 		}
 		catch (OpenWindowFailed exception)
 		{
@@ -96,6 +97,7 @@ namespace BaseGame
 		delete renderer;
 		delete textImporter;
 		delete input;
+		delete collisionManager;
 
 		OnDeinit();
 	}

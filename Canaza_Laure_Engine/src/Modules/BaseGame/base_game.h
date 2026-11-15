@@ -10,6 +10,7 @@
 #include "Modules/Renderer/renderer.h"
 #include "Modules/TextureImporter/texture_importer.h"
 #include "Modules/Input/input.h"
+#include "Modules/CollisionManager/collision_manager.h"
 
 namespace BaseGame
 {
@@ -27,6 +28,7 @@ namespace BaseGame
 		Renderer::Renderer* renderer = nullptr;
 		TextureImporter::TextureImporter* textImporter = nullptr;
 		Input::Input* input = nullptr;
+		CollisionManager::CollisionManager* collisionManager = nullptr;
 
 	public:
 		BaseGame();

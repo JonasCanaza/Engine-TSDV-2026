@@ -49,6 +49,9 @@
     <Filter Include="src\Modules\Input">
       <UniqueIdentifier>{4618cf6c-7534-47d9-ab3a-ba72250d6cb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Modules\CollisionManager">
+      <UniqueIdentifier>{f7dd201d-2ba2-43b5-b297-29536adaf057}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Exceptions\exceptions.cpp">
@@ -92,6 +95,12 @@
     </ClCompile>
     <ClCompile Include="src\Modules\Input\input.cpp">
       <Filter>src\Modules\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Modules\CollisionManager\collision_manager.cpp">
+      <Filter>src\Modules\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vec3.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +159,12 @@
       <Filter>src\Modules\Input</Filter>
     </ClInclude>
     <ClInclude Include="src\engine_input.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Modules\CollisionManager\collision_manager.h">
+      <Filter>src\Modules\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vec3.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
