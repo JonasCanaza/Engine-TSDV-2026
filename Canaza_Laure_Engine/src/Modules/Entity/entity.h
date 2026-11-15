@@ -34,6 +34,7 @@ namespace Entity
 		Vec3::Vec3 AABBPos;
 		Vec3::Vec3 AABBExtents;
 		glm::vec3 colliderScale = glm::vec3(1.f, 1.f, 1.f);
+		Vec3::Vec3 lastPosition;
 #pragma warning(pop)
 
 	public:
@@ -48,6 +49,9 @@ namespace Entity
 
 		Vec3::Vec3 GetAABBPos();
 		Vec3::Vec3 GetAABBSize();
+
+		Vec3::Vec3 GetPosition();
+		Vec3::Vec3 GetLastPosition();
 
 		void SetColliderScale(Vec3::Vec3 scale);
 

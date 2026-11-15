@@ -15,22 +15,22 @@ void Flipper::Move(float dir)
 
 void Flipper::Update(float deltaTime)
 {
-	deltaTime;
-
-	Move(isMovingUp);
-
-	if (pos.y <= 0)
-	{
-		isMovingUp = 1.0f;
-		Rotate(180);
-	}
-
-	if (pos.y >= 1080)
-	{
-		isMovingUp = -1.0f;
-		Rotate(180);
-	}
-
+	//deltaTime;
+	//
+	//Move(isMovingUp);
+	//
+	//if (pos.y <= 0)
+	//{
+	//	isMovingUp = 1.0f;
+	//	Rotate(180);
+	//}
+	//
+	//if (pos.y >= 1080)
+	//{
+	//	isMovingUp = -1.0f;
+	//	Rotate(180);
+	//}
+	//
 	Draw();
 }
 

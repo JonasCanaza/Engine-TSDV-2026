@@ -84,9 +84,9 @@ namespace Game
 		}
 
 		star->Update();
-		HandleCollisions();
-
 		PlayerInput(deltaTime);
+
+		HandleCollisions();
 	}
 
 	void Game::OnDeinit()
@@ -121,11 +121,100 @@ namespace Game
 
 		for (int i = 0; i < entities.size(); i++)
 		{
-			if (collisionManager->AreColliding(player, entities[i]))
+			if (entities[i] == player)
 			{
+				continue;
+			}
 
+			Vec3::Vec3 intersection;
+
+			if (collisionManager->AreColliding(player, entities[i], intersection))
+			{
+				Vec3::Vec3 playerPos = player->GetAABBPos();
+				Vec3::Vec3 colliderPos = entities[i]->GetAABBPos();
+
+				int xDir = playerPos.x < colliderPos.x ? -1 : 1;
+				int yDir = playerPos.y < colliderPos.y ? -1 : 1;
+
+				if (intersection.x < intersection.y)
+				{
+					player->Translate(intersection.x > 0.f ? intersection.x * xDir : 0.f,
+						0.f,
+						0.f);
+				}
+				else
+				{
+					player->Translate(0.f,
+						intersection.y > 0.f ? intersection.y * yDir : 0.f,
+						0.f);
+				}
 			}
 		}
+	}
+
+	void Game::MoveEntity(Entity::Entity* entity, Vec3::Vec3 addPos)
+	{
+		Vec3::Vec3 entityPos = entity->GetAABBPos();
+		Vec3::Vec3 entityExtents = entity->GetAABBSize();
+
+		float minExtent = std::min(entityExtents.x, entityExtents.y) * 0.5f;
+
+		float distance = std::sqrt(addPos.x * addPos.x + addPos.y * addPos.y);
+
+		if (distance <= 0)
+		{
+			return;
+		}
+
+		int steps = std::max(1, static_cast<int>(std::ceil(distance / minExtent)));
+
+		Vec3::Vec3 stepSize = Vec3::Vec3(addPos.x / steps, addPos.y / steps, addPos.z / steps);
+
+		for (int i = 0; i < steps; i++)
+		{
+			entity->Translate(stepSize.x, stepSize.y, stepSize.z);
+
+			CheckEntityCollision(entity);
+		}
+	}
+
+	bool Game::CheckEntityCollision(Entity::Entity* entity)
+	{
+		for (int i = 0; i < entities.size(); i++)
+		{
+			if (entities[i] == entity)
+			{
+				continue;
+			}
+
+			Vec3::Vec3 intersection;
+
+			if (collisionManager->AreColliding(entity, entities[i], intersection))
+			{
+				Vec3::Vec3 playerPos = entity->GetAABBPos();
+				Vec3::Vec3 colliderPos = entities[i]->GetAABBPos();
+
+				int xDir = playerPos.x < colliderPos.x ? -1 : 1;
+				int yDir = playerPos.y < colliderPos.y ? -1 : 1;
+
+				if (intersection.x < intersection.y)
+				{
+					entity->Translate(intersection.x > 0.f ? intersection.x * xDir : 0.f,
+						0.f,
+						0.f);
+					return true;
+				}
+				else
+				{
+					entity->Translate(0.f,
+						intersection.y > 0.f ? intersection.y * yDir : 0.f,
+						0.f);
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	void Game::PlayerInput(float deltaTime)
@@ -174,7 +263,8 @@ namespace Game
 		}
 
 		Vec3::Vec3 movingDir = Vec3::Vec3::GetNormalized(direction) * (playerSpeed * deltaTime);
-		player->Translate(movingDir.x, movingDir.y, movingDir.z);
+		MoveEntity(player, movingDir);
+		//player->Translate(movingDir.x, movingDir.y, movingDir.z);
 	}
 
 	Game::~Game()

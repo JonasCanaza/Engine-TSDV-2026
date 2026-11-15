@@ -66,6 +66,16 @@ namespace Entity
 		return AABBExtents;
 	}
 
+	Vec3::Vec3 Entity::GetPosition()
+	{
+		return Vec3::Vec3(translation.x, translation.y, translation.z);
+	}
+
+	Vec3::Vec3 Entity::GetLastPosition()
+	{
+		return lastPosition;
+	}
+
 	void Entity::SetColliderScale(Vec3::Vec3 newScale)
 	{
 		colliderScale = glm::vec3(newScale.x, newScale.y, newScale.z);
@@ -106,7 +116,7 @@ namespace Entity
 			maxY = glm::max(maxY, currentVertex.y);
 			maxZ = glm::max(maxZ, currentVertex.z);
 		}
-
+		lastPosition = AABBPos;
 		AABBPos = Vec3::Vec3((minX + maxX) * 0.5f, (minY + maxY) * 0.5f, (minZ + maxZ) * 0.5f);
 		AABBExtents = Vec3::Vec3((maxX - minX) * 0.5f, (maxY - minY) * 0.5f, (maxZ - minZ) * 0.5f);
 	}

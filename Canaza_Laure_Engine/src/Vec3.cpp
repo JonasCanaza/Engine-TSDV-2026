@@ -59,6 +59,11 @@ namespace Vec3
 		return Vec3(other.x + x, other.y + y, other.z + z);
 	}
 
+	Vec3 Vec3::operator-(const Vec3 other)
+	{
+		return Vec3(x - other.x, y - other.y, z - other.z);
+	}
+
 	Vec3 Vec3::operator*(const float scalar)
 	{
 		return Vec3(x * scalar, y * scalar, z * scalar);

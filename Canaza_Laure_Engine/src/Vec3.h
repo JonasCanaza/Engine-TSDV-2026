@@ -20,6 +20,7 @@ namespace Vec3
 		void Normalize();
 
 		Vec3 operator+(const Vec3 other);
+		Vec3 operator-(const Vec3 other);
 		Vec3 operator*(const float scalar);
 		bool operator==(const Vec3 other);
 		bool operator!=(const Vec3 other);

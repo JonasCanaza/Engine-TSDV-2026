@@ -11,6 +11,7 @@ namespace CollisionManager
 		CollisionManager();
 
 		bool AreColliding(Entity::Entity* a, Entity::Entity* b);
+		bool AreColliding(Entity::Entity* a, Entity::Entity* b, Vec3::Vec3& interesection);
 
 		~CollisionManager();
 	};

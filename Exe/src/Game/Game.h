@@ -20,7 +20,7 @@ namespace Game
 		Star* star = nullptr;
 		Flipper* flipper = nullptr;
 
-		const float playerSpeed = 200;
+		const float playerSpeed = 1000;
 
 		Sprite::Sprite* player;
 		Vec3::Vec3 direction;
@@ -40,8 +40,10 @@ namespace Game
 		void OnUpdate(float deltaTime) override;
 		void OnDeinit() override;
 
+		void MoveEntity(Entity::Entity* entity, Vec3::Vec3 newPos);
 		void HandleCollisions();
-		void PlayerInput(float deltaTime);
+		bool CheckEntityCollision(Entity::Entity* entity);
+			void PlayerInput(float deltaTime);
 
 		~Game();
 	};
