@@ -23,17 +23,15 @@ namespace Game
 		sprite->Scale(300.0f, 300.0f, 1.0f);
 		sprite->Translation(400.0f, 300.0f, 0.0f);
 
-		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA);
-		anim->Scale(300.0f, 300.0f, 1.0f);
-		anim->Translation(900.0f, 300.0f, 0.0f);
-
 		idleAnimation = new Animation::Animation();
 		idleAnimation->AddFrame(0.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 		idleAnimation->AddFrame(48.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 		idleAnimation->AddFrame(96.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 		idleAnimation->AddFrame(144.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 
-		anim->ChangeAnimation(idleAnimation);
+		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA,idleAnimation);
+		anim->Scale(300.0f, 300.0f, 1.0f);
+		anim->Translation(900.0f, 300.0f, 0.0f);
 
 		downAnimation = new Animation::Animation();
 		downAnimation->AddFrame(0.f, 192.f, 48.f, 48.f, 192, 864, 0.75f);
@@ -61,12 +59,12 @@ namespace Game
 
 		player = anim;
 
-		//flipper->Translation(1400.0f, 300.0f, 0.0f);
-		//flipper->Scale(300.0f, 300.0f, 1.0f);
+		flipper->Translation(1400.0f, 300.0f, 0.0f);
+		flipper->Scale(300.0f, 300.0f, 1.0f);
 
-		//this->flipper = flipper;
+		this->flipper = flipper;
 
-		//entities.push_back(flipper);
+		entities.push_back(flipper);
 		entities.push_back(sprite);
 		entities.push_back(anim);
 	}

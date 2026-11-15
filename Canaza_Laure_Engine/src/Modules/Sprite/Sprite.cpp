@@ -43,11 +43,11 @@ namespace Sprite
 2,3,0
 	};
 
-	Sprite::Sprite(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, TextureImporter::TextureImporter* textImporter, const char path[], int width, int height, ColorFormat::ColorFormat format) : Entity2D(globalTRS, color, renderer, rectangleVerticesObj, rectangleIndexesObj, vertexShaderSource, fragmentShaderSource)
+	Sprite::Sprite(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, TextureImporter::TextureImporter* textImporter, const char path[], int width, int height, ColorFormat::ColorFormat format, Animation::Animation* animation) : Entity2D(globalTRS, color, renderer, rectangleVerticesObj, rectangleIndexesObj, vertexShaderSource, fragmentShaderSource)
 	{
 		texture = textImporter->ImportTexture(path, width, height, format);
 
-		animation = new Animation::Animation();
+		this->animation = animation;
 	}
 
 	void Sprite::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds)
@@ -75,7 +75,10 @@ namespace Sprite
 	{
 		if (animation != newAnimation)
 		{
-			animation->Restart();
+			if (animation != nullptr)
+			{
+				animation->Restart();
+			}
 			animation = newAnimation;
 		}
 	}
@@ -105,9 +108,6 @@ namespace Sprite
 
 	Sprite::~Sprite()
 	{
-		if (animation != nullptr)
-		{
-			delete animation;
-		}
+
 	}
 }

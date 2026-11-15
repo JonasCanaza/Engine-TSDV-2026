@@ -15,7 +15,7 @@ namespace Sprite
 		AnimationFrame::AnimationFrame* currentFrame = nullptr;
 
 	public:
-		Sprite(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, TextureImporter::TextureImporter* textImporter, const char path[], int width, int height, ColorFormat::ColorFormat format);
+		Sprite(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, TextureImporter::TextureImporter* textImporter, const char path[], int width, int height, ColorFormat::ColorFormat format, Animation::Animation* animation = nullptr);
 
 		void AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds);
 		void ChangeSprite(AnimationFrame::AnimationFrame* animationFrame);
