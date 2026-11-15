@@ -19,6 +19,7 @@ namespace Sprite
 
 		void AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds);
 		void ChangeSprite(AnimationFrame::AnimationFrame* animationFrame);
+		void ChangeAnimation(Animation::Animation* newAnimation);
 
 		void Update(float deltaTime) override;
 		void Draw() override;

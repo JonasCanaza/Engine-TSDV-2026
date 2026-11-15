@@ -46,6 +46,8 @@ namespace Sprite
 	Sprite::Sprite(glm::mat4 globalTRS, glm::vec4 color, Renderer::Renderer* renderer, TextureImporter::TextureImporter* textImporter, const char path[], int width, int height, ColorFormat::ColorFormat format) : Entity2D(globalTRS, color, renderer, rectangleVerticesObj, rectangleIndexesObj, vertexShaderSource, fragmentShaderSource)
 	{
 		texture = textImporter->ImportTexture(path, width, height, format);
+
+		animation = new Animation::Animation();
 	}
 
 	void Sprite::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds)
@@ -69,9 +71,18 @@ namespace Sprite
 		renderer->UpdateVBO(model.VBO, vertices);
 	}
 
+	void Sprite::ChangeAnimation(Animation::Animation* newAnimation)
+	{
+		if (animation != newAnimation)
+		{
+			animation->Restart();
+			animation = newAnimation;
+		}
+	}
+
 	void Sprite::Update(float deltaTime)
 	{
-		if (animation != nullptr)
+		if (animation != nullptr && animation->GetFramesCount() > 0)
 		{
 			animation->Update(deltaTime);
 

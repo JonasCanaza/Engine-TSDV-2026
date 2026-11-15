@@ -7,6 +7,9 @@
 #include "Modules/Entity/entity.h"
 #include "Star.h"
 #include "Flipper.h"
+#include "Modules/Animation/animation.h"
+#include "Modules/Sprite/Sprite.h"
+#include "Vec3.h"
 
 namespace Game
 {
@@ -17,12 +20,27 @@ namespace Game
 		Star* star = nullptr;
 		Flipper* flipper = nullptr;
 
+		const float playerSpeed = 50;
+
+		Sprite::Sprite* player;
+		Vec3::Vec3 direction;
+		Vec3::Vec3 lastDirection;
+
+		bool isPlayerMoving = false;
+		Animation::Animation* idleAnimation = nullptr;
+		Animation::Animation* upAnimation = nullptr;
+		Animation::Animation* downAnimation = nullptr;
+		Animation::Animation* leftAnimation = nullptr;
+		Animation::Animation* rightAnimation = nullptr;
+
 	public:
 		Game();
 
 		void OnInit() override;
 		void OnUpdate(float deltaTime) override;
 		void OnDeinit() override;
+
+		void PlayerInput(float deltaTime);
 
 		~Game();
 	};

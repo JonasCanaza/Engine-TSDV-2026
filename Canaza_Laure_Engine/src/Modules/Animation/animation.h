@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Modules/Animation/animation_frame.h"
+#include "Defines/dll_define.h"
 
 namespace Animation
 {
@@ -14,15 +15,19 @@ namespace Animation
 		int currentFrameIndex = 0;
 		std::vector<AnimationFrame::AnimationFrame> animationFrames;
 		AnimationFrame::AnimationFrame* currentFrame = nullptr;
-	public:
-		Animation();
+		int framesCount = 0;
 
-		void AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds);
+	public:
+		ENGINE_API Animation();
+
+		void ENGINE_API AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds);
 
 		void Update(float deltaTime);
+		void Restart();
 
 		AnimationFrame::AnimationFrame* GetCurrentFrame();
+		int GetFramesCount();
 
-		~Animation();
+		ENGINE_API ~Animation();
 	};
 }

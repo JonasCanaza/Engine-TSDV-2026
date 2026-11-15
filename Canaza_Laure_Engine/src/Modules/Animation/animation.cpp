@@ -29,6 +29,8 @@ namespace Animation
 		frame.uvCoords[3].u = framePosX / textWidth;
 		frame.uvCoords[3].v = (framePosY + frameHeight) / textHeight;
 
+		framesCount++;
+
 		animationFrames.push_back(frame);
 	}
 
@@ -46,16 +48,26 @@ namespace Animation
 
 		if (currentFrameIndex >= animationFrames.size())
 		{
-			currentFrameIndex = 0;
-			timer = 0;
+			Restart();
 		}
 
 		currentFrame = &animationFrames[currentFrameIndex];
 	}
 
+	void Animation::Restart()
+	{
+		currentFrameIndex = 0;
+		timer = 0;
+	}
+
 	AnimationFrame::AnimationFrame* Animation::GetCurrentFrame()
 	{
 		return currentFrame;
+	}
+
+	int Animation::GetFramesCount()
+	{
+		return framesCount;
 	}
 
 	Animation::~Animation()

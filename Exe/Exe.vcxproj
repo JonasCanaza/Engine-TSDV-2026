@@ -23,11 +23,13 @@
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Star.cpp" />
+    <ClCompile Include="src\Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Flipper.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Star.h" />
+    <ClInclude Include="src\Vec3.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Canaza_Laure_Engine\Canaza_Laure_Engine.vcxproj">
