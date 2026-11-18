@@ -20,20 +20,26 @@ namespace Game
 		Star* star = nullptr;
 		Flipper* flipper = nullptr;
 
-		const float playerSpeed = 5000;
+		const float playerSpeed = 300;
 
 		Sprite::Sprite* player;
-		Sprite::Sprite* otherMage;
+		Sprite::Sprite* rock;
 
 		Vec3::Vec3 direction;
 		Vec3::Vec3 lastDirection;
 
 		bool isPlayerMoving = false;
+		bool isPlayerPushing = false;
+		bool isPlayerCollidingRock = false;
+		CollisionManager::CollisionSide collisionSide = CollisionManager::CollisionSide::None;
 		Animation::Animation* idleAnimation = nullptr;
-		Animation::Animation* upAnimation = nullptr;
-		Animation::Animation* downAnimation = nullptr;
-		Animation::Animation* leftAnimation = nullptr;
-		Animation::Animation* rightAnimation = nullptr;
+		Animation::Animation* moveAnimation = nullptr;
+		Animation::Animation* dashAnimation = nullptr;
+		Animation::Animation* rockCollideAnimation = nullptr;
+
+		Animation::Animation* rockIdleAnimation = nullptr;
+
+		bool isDashing = false;
 
 	public:
 		Game();
@@ -43,8 +49,9 @@ namespace Game
 		void OnDeinit() override;
 
 		void MoveEntity(Entity::Entity* entity, Vec3::Vec3 newPos);
+		void PushRock(float deltaTime);
 		void HandleCollisions(Entity::Entity* entity);
-		bool CheckEntityCollision(Entity::Entity* entity);
+		bool CheckEntityCollision(Entity::Entity* entity, CollisionManager::CollisionSide& collisionSide);
 		void PlayerInput(float deltaTime);
 
 		~Game();

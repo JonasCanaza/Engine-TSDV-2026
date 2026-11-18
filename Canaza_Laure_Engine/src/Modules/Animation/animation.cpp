@@ -7,7 +7,7 @@ namespace Animation
 
 	}
 
-	void Animation::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds)
+	void Animation::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds, bool shouldLoop)
 	{
 		AnimationFrame::AnimationFrame frame;
 
@@ -31,33 +31,50 @@ namespace Animation
 
 		framesCount++;
 
+		loops = shouldLoop;
+
 		animationFrames.push_back(frame);
 	}
 
 	void Animation::Update(float deltaTime)
 	{
-		timer += deltaTime;
-
-		while (timer > length)
+		if (isRunning)
 		{
-			timer -= length;
+			timer += deltaTime;
+
+			while (timer > length)
+			{
+				timer -= length;
+			}
+
+			float frameLength = length / animationFrames.size();
+			currentFrameIndex = static_cast<int>(timer / frameLength);
+
+			if (currentFrameIndex >= animationFrames.size() && loops)
+			{
+				if (loops)
+				{
+					Restart();
+				}
+				else
+				{
+					isRunning = false;
+				}
+			}
+
+			currentFrame = &animationFrames[currentFrameIndex];
 		}
-
-		float frameLength = length / animationFrames.size();
-		currentFrameIndex = static_cast<int>(timer / frameLength);
-
-		if (currentFrameIndex >= animationFrames.size())
-		{
-			Restart();
-		}
-
-		currentFrame = &animationFrames[currentFrameIndex];
 	}
 
 	void Animation::Restart()
 	{
 		currentFrameIndex = 0;
 		timer = 0;
+	}
+
+	void Animation::RunAnimation()
+	{
+		isRunning = true;
 	}
 
 	AnimationFrame::AnimationFrame* Animation::GetCurrentFrame()
@@ -68,6 +85,11 @@ namespace Animation
 	int Animation::GetFramesCount()
 	{
 		return framesCount;
+	}
+
+	bool Animation::GetIsRunning()
+	{
+		return isRunning;
 	}
 
 	Animation::~Animation()

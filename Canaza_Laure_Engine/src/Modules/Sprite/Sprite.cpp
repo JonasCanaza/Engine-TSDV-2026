@@ -50,14 +50,14 @@ namespace Sprite
 		this->animation = animation;
 	}
 
-	void Sprite::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds)
+	void Sprite::AddFrame(float framePosX, float framePosY, float frameWidth, float frameHeight, float textWidth, float textHeight, float durationInSeconds, bool loops)
 	{
 		if (animation == nullptr)
 		{
 			animation = new Animation::Animation();
 		}
 
-		animation->AddFrame(framePosX, framePosY, frameWidth, frameHeight, textWidth, textHeight, durationInSeconds);
+		animation->AddFrame(framePosX, framePosY, frameWidth, frameHeight, textWidth, textHeight, durationInSeconds, loops);
 	}
 
 	void Sprite::ChangeSprite(AnimationFrame::AnimationFrame* animationFrame)
