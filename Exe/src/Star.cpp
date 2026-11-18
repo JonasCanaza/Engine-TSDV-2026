@@ -13,7 +13,7 @@ Star::Star(glm::mat4 globalTRS, Renderer::Renderer* renderer)
 	triangle1->Scale(300.0f, 300.0f, 1.0f);
 	triangle2->Scale(300.0f, 300.0f, 1.0f);
 
-	triangle2->Rotate(180.0f);
+	//triangle2->Rotate(180.0f);
 }
 
 void Star::Update()
@@ -29,8 +29,8 @@ void Star::Update()
 		direction = 1;
 	}
 
-	triangle1->Rotate(speed);
-	triangle2->Rotate(-speed );
+	//triangle1->Rotate(speed);
+	//triangle2->Rotate(-speed );
 
 	triangle1->Draw();
 	triangle2->Draw();

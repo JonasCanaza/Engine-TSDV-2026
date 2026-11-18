@@ -1,7 +1,10 @@
 #include "Modules/CollisionManager/collision_manager.h"
 
+static const float EPSILON = 1e-06f;
+
 namespace CollisionManager
 {
+
 	CollisionManager::CollisionManager()
 	{
 
@@ -33,9 +36,41 @@ namespace CollisionManager
 
 		intersection.x = leftExtents.x + rightExtents.x - fabs(leftPos.x - rightPos.x);
 		intersection.y = leftExtents.y + rightExtents.y - fabs(leftPos.y - rightPos.y);
-		intersection.z = leftExtents.z + rightExtents.z - fabs(leftPos.z - rightPos.z);
 
-		return intersection.x >= 0.f && intersection.y >= 0.f && intersection.z >= 0.f;
+		return intersection.x >= EPSILON && intersection.y >= EPSILON;
+	}
+
+	bool CollisionManager::AreColliding(Entity::Entity* lhs, Entity::Entity* rhs, Vec3::Vec3& intersection, CollisionSide& side)
+	{
+		side = CollisionSide::None;
+
+		Vec3::Vec3 leftPos = lhs->GetAABBPos();
+		Vec3::Vec3 leftExtents = lhs->GetAABBSize();
+
+		Vec3::Vec3 rightPos = rhs->GetAABBPos();
+		Vec3::Vec3 rightExtents = rhs->GetAABBSize();
+
+		float distanceX = leftPos.x - rightPos.x;
+		float distanceY = leftPos.y - rightPos.y;
+
+		intersection.x = leftExtents.x + rightExtents.x - fabs(leftPos.x - rightPos.x);
+		intersection.y = leftExtents.y + rightExtents.y - fabs(leftPos.y - rightPos.y);
+
+		if (intersection.x >= EPSILON && intersection.y >= EPSILON)
+		{
+			if (intersection.x < intersection.y)
+			{
+				side = distanceX > 0.f ? CollisionSide::Right : CollisionSide::Left;
+			}
+			else
+			{
+				side = distanceY > 0.f ? CollisionSide::Bottom : CollisionSide::Top;
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 	CollisionManager::~CollisionManager()

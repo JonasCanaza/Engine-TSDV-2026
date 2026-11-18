@@ -5,6 +5,7 @@
 #include <limits>
 
 #define DEG2RAD 0.017453292519943295
+#define EPSILON 0.0001f
 
 namespace Entity
 {
@@ -15,6 +16,11 @@ namespace Entity
 		this->vertices = vertices;
 		this->indexes = indexes;
 
+		r = color.x;
+		g = color.y;
+		b = color.z;
+		a = color.w;
+
 		for (int i = 0; i < vertices.size() / 9; i++)
 		{
 			this->vertices[9 * i + 3] = color.r;
@@ -24,6 +30,46 @@ namespace Entity
 		}
 
 		model = renderer->CreateModel(this->vertices, indexes);
+
+		UpdateTRS();
+	}
+
+	float Entity::GetColorR()
+	{
+		return r;
+	}
+
+	float Entity::GetColorG()
+	{
+		return g;
+	}
+
+	float Entity::GetColorB()
+	{
+		return b;
+	}
+
+	float Entity::GetColorA()
+	{
+		return a;
+	}
+
+	void Entity::Color(float newR, float newG, float newB, float newA)
+	{
+		this->r = newR;
+		this->g = newG;
+		this->b = newB;
+		this->a = newA;
+
+		for (int i = 0; i < vertices.size() / 9; i++)
+		{
+			this->vertices[9 * i + 3] = r;
+			this->vertices[9 * i + 4] = g;
+			this->vertices[9 * i + 5] = b;
+			this->vertices[9 * i + 6] = a;
+		}
+
+		renderer->UpdateVBO(model.VBO, vertices);
 	}
 
 	void Entity::Translate(float x, float y, float z)
@@ -32,9 +78,21 @@ namespace Entity
 		UpdateTRS();
 	}
 
-	void Entity::Rotate(float rotation)
+	void Entity::Rotate(float x, float y, float z, float angle)
 	{
-		rotationZ += rotation;
+		glm::vec3 axis(x, y, z);
+		if (glm::length(axis) > EPSILON)
+		{
+			glm::quat quat = glm::angleAxis(static_cast<float>(angle * DEG2RAD), glm::normalize(axis));
+			rotation = glm::normalize(quat * rotation);
+			UpdateTRS();
+		}
+	}
+
+	void Entity::RotateZ(float angle)
+	{
+		glm::quat quat = glm::angleAxis(static_cast<float>(angle * DEG2RAD), glm::vec3(0.f, 0.f, 1.f));
+		rotation = glm::normalize(quat * rotation);
 		UpdateTRS();
 	}
 
@@ -44,9 +102,21 @@ namespace Entity
 		UpdateTRS();
 	}
 
-	void Entity::Rotation(float rotation)
+	void Entity::Rotation(float x, float y, float z, float w)
 	{
-		this->rotationZ = rotation;
+		glm::quat quat(w, x, y, z);
+
+		if (glm::length(quat) > EPSILON)
+		{
+			rotation = glm::normalize(quat);
+			UpdateTRS();
+		}
+	}
+
+	//Overrides every other axis rotation
+	void Entity::RotationZ(float angle)
+	{
+		rotation = glm::angleAxis(static_cast<float>(angle * DEG2RAD), glm::vec3(0.f, 0.f, 1.f));
 		UpdateTRS();
 	}
 
@@ -71,11 +141,6 @@ namespace Entity
 		return Vec3::Vec3(translation.x, translation.y, translation.z);
 	}
 
-	Vec3::Vec3 Entity::GetLastPosition()
-	{
-		return lastPosition;
-	}
-
 	void Entity::SetColliderScale(Vec3::Vec3 newScale)
 	{
 		colliderScale = glm::vec3(newScale.x, newScale.y, newScale.z);
@@ -87,7 +152,7 @@ namespace Entity
 		glm::mat4 identity = glm::mat4(1.0f);
 
 		identity = glm::translate(identity, translation);
-		identity = glm::rotate(identity, glm::radians(rotationZ), glm::vec3(0.0f, 0.0f, 1.0f));
+		identity = identity * glm::mat4_cast(rotation);
 		identity = glm::scale(identity, scale);
 
 		globalTRS = identity;
@@ -116,7 +181,6 @@ namespace Entity
 			maxY = glm::max(maxY, currentVertex.y);
 			maxZ = glm::max(maxZ, currentVertex.z);
 		}
-		lastPosition = AABBPos;
 		AABBPos = Vec3::Vec3((minX + maxX) * 0.5f, (minY + maxY) * 0.5f, (minZ + maxZ) * 0.5f);
 		AABBExtents = Vec3::Vec3((maxX - minX) * 0.5f, (maxY - minY) * 0.5f, (maxZ - minZ) * 0.5f);
 	}

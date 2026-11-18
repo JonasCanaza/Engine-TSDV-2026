@@ -18,9 +18,10 @@ namespace Game
 		glm::vec3 startPos = glm::vec3(1400.0f, 300.0f, 0.0f);
 		Flipper* flipper = new Flipper(glm::mat4(1.0f), startPos, renderer);
 
-		Sprite::Sprite* sprite = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Armature_Drop_00.png", 1099, 1453, ColorFormat::ColorFormat::RGBA);
+		Sprite::Sprite* sprite = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 1, 1, 1), renderer, textImporter, "res/Armature_Drop_00.png", 1099, 1453, ColorFormat::ColorFormat::RGBA);
 
 		sprite->Scale(300.0f, 300.0f, 1.0f);
+		sprite->Rotate(0.f, 1.f, 0.f, 180.f);
 		sprite->Translation(400.0f, 300.0f, 0.0f);
 
 		idleAnimation = new Animation::Animation();
@@ -29,11 +30,11 @@ namespace Game
 		idleAnimation->AddFrame(96.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 		idleAnimation->AddFrame(144.f, 0.f, 48.f, 48.f, 192, 864, 0.75f);
 
-		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA, idleAnimation);
+		Sprite::Sprite* anim = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 1, 1, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA, idleAnimation);
 		anim->Scale(300.0f, 300.0f, 1.0f);
 		anim->Translation(900.0f, 300.0f, 0.0f);
 
-		Sprite::Sprite* anim2 = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 0, 0, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA, idleAnimation);
+		Sprite::Sprite* anim2 = new Sprite::Sprite(glm::mat4(1.0f), glm::vec4(1, 1, 1, 1), renderer, textImporter, "res/Spritesheets/Wizard-sheet.png", 192, 864, ColorFormat::ColorFormat::RGBA, idleAnimation);
 		anim2->Scale(300.0f, 300.0f, 1.0f);
 		anim2->Translation(1200.0f, 300.0f, 0.0f);
 
@@ -62,6 +63,7 @@ namespace Game
 		rightAnimation->AddFrame(144.f, 336.f, 48.f, 48.f, 192, 864, 0.75f);
 
 		player = anim;
+		otherMage = anim2;
 		player->SetColliderScale(Vec3::Vec3(13.f / 48.f, 18.f / 48.f, 1.0f));
 		anim2->SetColliderScale(Vec3::Vec3(13.f / 48.f, 18.f / 48.f, 1.0f));
 
@@ -78,15 +80,16 @@ namespace Game
 
 	void Game::OnUpdate(float deltaTime)
 	{
+		PlayerInput(deltaTime);
+
+		HandleCollisions(player);
+
 		for (int i = 0; i < entities.size(); i++)
 		{
 			entities[i]->Update(deltaTime);
 		}
 
 		star->Update();
-		PlayerInput(deltaTime);
-
-		HandleCollisions();
 	}
 
 	void Game::OnDeinit()
@@ -106,45 +109,34 @@ namespace Game
 		delete star;
 	}
 
-	void Game::HandleCollisions()
+	void Game::HandleCollisions(Entity::Entity* entity)
 	{
-		//for (int i = 0; i < entities.size() - 1; i++)
-		//{
-		//	for (int j = i + 1; j < entities.size(); j++)
-		//	{
-		//		if (collisionManager->AreColliding(entities[i], entities[j]))
-		//		{
-		//			std::cout << "Collider1: " << i << " Collider2: " << j;
-		//		}
-		//	}
-		//}
-
 		for (int i = 0; i < entities.size(); i++)
 		{
-			if (entities[i] == player)
+			if (entities[i] == entity)
 			{
 				continue;
 			}
 
 			Vec3::Vec3 intersection;
 
-			if (collisionManager->AreColliding(player, entities[i], intersection))
+			if (collisionManager->AreColliding(entity, entities[i], intersection))
 			{
-				Vec3::Vec3 playerPos = player->GetAABBPos();
+				Vec3::Vec3 entityPos = entity->GetAABBPos();
 				Vec3::Vec3 colliderPos = entities[i]->GetAABBPos();
 
-				int xDir = playerPos.x < colliderPos.x ? -1 : 1;
-				int yDir = playerPos.y < colliderPos.y ? -1 : 1;
+				int xDir = entityPos.x < colliderPos.x ? -1 : 1;
+				int yDir = entityPos.y < colliderPos.y ? -1 : 1;
 
 				if (intersection.x < intersection.y)
 				{
-					player->Translate(intersection.x > 0.f ? intersection.x * xDir : 0.f,
+					entity->Translate(intersection.x > 0.f ? intersection.x * xDir : 0.f,
 						0.f,
 						0.f);
 				}
 				else
 				{
-					player->Translate(0.f,
+					entity->Translate(0.f,
 						intersection.y > 0.f ? intersection.y * yDir : 0.f,
 						0.f);
 				}
@@ -264,7 +256,6 @@ namespace Game
 
 		Vec3::Vec3 movingDir = Vec3::Vec3::GetNormalized(direction) * (playerSpeed * deltaTime);
 		MoveEntity(player, movingDir);
-		//player->Translate(movingDir.x, movingDir.y, movingDir.z);
 	}
 
 	Game::~Game()

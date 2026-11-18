@@ -26,15 +26,15 @@ namespace Sprite
 		"uniform sampler2D ourTexture;\n"
 		"void main()\n"
 		"{\n"
-		"    FragColor = texture(ourTexture, texCoord);\n"
+		"    FragColor = texture(ourTexture, texCoord) * myColor;\n"
 		"}\n";
 
 	static const std::vector<float> rectangleVerticesObj =
 	{
-	-0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f, 1.0f,  0.0f, 0.0f,
-	 0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f, 1.0f,  1.0f, 0.0f,
-	 0.5f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f, 1.0f,  1.0f, 1.0f,
-	-0.5f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f, 1.0f,  0.0f, 1.0f
+	-0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 1.0f, 1.0f,  0.0f, 0.0f,
+	 0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 1.0f, 1.0f,  1.0f, 0.0f,
+	 0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f, 1.0f,  1.0f, 1.0f,
+	-0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f, 1.0f,  0.0f, 1.0f
 	};
 
 	static const std::vector<unsigned int> rectangleIndexesObj =
