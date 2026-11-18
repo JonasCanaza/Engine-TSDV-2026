@@ -43,7 +43,7 @@ Motor de videojuegos 2D modular desarrollado en **C++** sobre **OpenGL 3.3 Core*
 
   ## Uso
 
-  **El repositorio contiene un programa de ejemplo ubicado en la carpeta "Game"
+  **El repositorio contiene un programa de ejemplo ubicado en la carpeta "Exe"
 
 ---## Compilación
 
